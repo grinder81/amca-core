@@ -122,6 +122,8 @@ by git.
 ## Documentation
 
 - [Architecture](docs/architecture.md)
+- [Visual Guide](docs/visual-guide.md)
+- [Use Cases](docs/use-cases.md)
 - [Getting Started](docs/getting-started.md)
 - [Core Concepts](docs/concepts.md)
 - [Adapters](docs/adapters.md)
