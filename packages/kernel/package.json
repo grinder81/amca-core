@@ -1,0 +1,18 @@
+{
+  "name": "@amca/kernel",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@amca/contracts": "workspace:*",
+    "@amca/ledger": "workspace:*",
+    "@amca/proof": "workspace:*",
+    "@amca/protocol": "workspace:*"
+  }
+}

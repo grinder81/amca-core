@@ -1,0 +1,497 @@
+{
+  "id": "pr-current-state-fresh-released",
+  "title": "Pull request current-state claim released with fresh observation",
+  "case": "positive",
+  "profile": "standard",
+  "description": "A final candidate claims current pull request state using an observation inside its freshness window.",
+  "runtimeScope": {
+    "requiresRuntimeBehavior": false,
+    "implementsProofBehavior": false,
+    "implementsKernelBehavior": false,
+    "implementsCliBehavior": false
+  },
+  "given": {
+    "toolCommandRequest": {
+      "kind": "tool_command_request",
+      "commandId": "cmd_pr_current_state_fresh",
+      "runId": "run_pr_current_state_fresh",
+      "capabilityId": "vcs.pull_request.read",
+      "toolId": "vcs.getPullRequest",
+      "args": {
+        "repository": "amca",
+        "pullRequestId": "pr-217"
+      },
+      "sideEffectClass": "read",
+      "idempotencyKey": "idem_pr_current_state_fresh"
+    },
+    "effectRequest": {
+      "effectId": "effect_pr_current_state_fresh",
+      "commandId": "cmd_pr_current_state_fresh",
+      "runId": "run_pr_current_state_fresh",
+      "capabilityId": "vcs.pull_request.read",
+      "toolId": "vcs.getPullRequest",
+      "args": {
+        "repository": "amca",
+        "pullRequestId": "pr-217"
+      },
+      "sideEffectClass": "read",
+      "requestedAt": "2026-05-24T18:35:00.000Z",
+      "idempotencyKey": "idem_pr_current_state_fresh"
+    },
+    "externalStateObservation": {
+      "observationId": "obs_pr_current_state_fresh",
+      "runId": "run_pr_current_state_fresh",
+      "observationType": "pull_request_state",
+      "subjectType": "pull_request",
+      "subjectId": "pr-217",
+      "observedState": {
+        "state": "open",
+        "head": "phase/testing-fixtures"
+      },
+      "observedAt": "2026-05-24T18:35:00.000Z",
+      "expiresAt": "2026-05-24T18:40:00.000Z",
+      "payloadHash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+      "evidence": [
+        {
+          "evidenceId": "ev_pr_current_state_fresh_observation",
+          "kind": "external_observation",
+          "sourceEventId": "evt_pr_current_state_fresh_observed",
+          "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+          "observedAt": "2026-05-24T18:35:00.000Z",
+          "sensitivity": "internal",
+          "expiresAt": "2026-05-24T18:40:00.000Z",
+          "metadata": {
+            "observationType": "pull_request_state"
+          }
+        }
+      ]
+    },
+    "finalCandidate": {
+      "kind": "final_candidate",
+      "candidateId": "candidate_pr_current_state_fresh",
+      "runId": "run_pr_current_state_fresh",
+      "claims": [
+        {
+          "claimId": "claim_pr_current_state_fresh",
+          "type": "current_state",
+          "statement": "Pull request pr-217 is open.",
+          "predicate": {
+            "kind": "current_state",
+            "subjectType": "pull_request",
+            "subjectId": "pr-217",
+            "property": "state",
+            "operator": "equals",
+            "expectedValue": "open",
+            "observationType": "pull_request_state",
+            "freshnessRequirementMs": 300000
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_current_state_fresh_observation",
+              "kind": "external_observation",
+              "sourceEventId": "evt_pr_current_state_fresh_observed",
+              "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+              "observedAt": "2026-05-24T18:35:00.000Z",
+              "sensitivity": "internal",
+              "expiresAt": "2026-05-24T18:40:00.000Z",
+              "metadata": {
+                "observationType": "pull_request_state"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ],
+      "narrativeDraft": "Pull request pr-217 is open."
+    },
+    "runEvents": [
+      {
+        "eventId": "evt_pr_current_state_fresh_run_started",
+        "runId": "run_pr_current_state_fresh",
+        "sequence": 1,
+        "type": "RunStarted",
+        "payload": {
+          "runId": "run_pr_current_state_fresh",
+          "profile": "standard",
+          "metadata": {
+            "scenarioId": "pr-current-state-fresh-released"
+          }
+        },
+        "payloadHash": "sha256:e1d114f31c0e50a621c6b97afa74f47021672dc2989c2768ceb514b8da5b509f",
+        "causationId": null,
+        "correlationId": "corr_pr_current_state_fresh",
+        "occurredAt": "2026-05-24T18:35:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_fresh_tool_proposed",
+        "runId": "run_pr_current_state_fresh",
+        "sequence": 2,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "tool_command_request",
+            "commandId": "cmd_pr_current_state_fresh",
+            "runId": "run_pr_current_state_fresh",
+            "capabilityId": "vcs.pull_request.read",
+            "toolId": "vcs.getPullRequest",
+            "args": {
+              "repository": "amca",
+              "pullRequestId": "pr-217"
+            },
+            "sideEffectClass": "read",
+            "idempotencyKey": "idem_pr_current_state_fresh"
+          }
+        },
+        "payloadHash": "sha256:829b9afe938c11e4f950ab727bc2b8e907a1ff8f5e7ab3c4a0f7b3e667539136",
+        "causationId": "evt_pr_current_state_fresh_run_started",
+        "correlationId": "corr_pr_current_state_fresh",
+        "occurredAt": "2026-05-24T18:35:00.100Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_fresh_effect_requested",
+        "runId": "run_pr_current_state_fresh",
+        "sequence": 3,
+        "type": "EffectRequested",
+        "payload": {
+          "effectRequest": {
+            "effectId": "effect_pr_current_state_fresh",
+            "commandId": "cmd_pr_current_state_fresh",
+            "runId": "run_pr_current_state_fresh",
+            "capabilityId": "vcs.pull_request.read",
+            "toolId": "vcs.getPullRequest",
+            "args": {
+              "repository": "amca",
+              "pullRequestId": "pr-217"
+            },
+            "sideEffectClass": "read",
+            "requestedAt": "2026-05-24T18:35:00.000Z",
+            "idempotencyKey": "idem_pr_current_state_fresh"
+          }
+        },
+        "payloadHash": "sha256:0d51e18da5b6872b183b79a6d77f5e281047276e0948182fbada0ee0879fe0cd",
+        "causationId": "evt_pr_current_state_fresh_tool_proposed",
+        "correlationId": "corr_pr_current_state_fresh",
+        "occurredAt": "2026-05-24T18:35:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_fresh_observed",
+        "runId": "run_pr_current_state_fresh",
+        "sequence": 4,
+        "type": "ExternalStateObserved",
+        "payload": {
+          "observation": {
+            "observationId": "obs_pr_current_state_fresh",
+            "runId": "run_pr_current_state_fresh",
+            "observationType": "pull_request_state",
+            "subjectType": "pull_request",
+            "subjectId": "pr-217",
+            "observedState": {
+              "state": "open",
+              "head": "phase/testing-fixtures"
+            },
+            "observedAt": "2026-05-24T18:35:00.000Z",
+            "expiresAt": "2026-05-24T18:40:00.000Z",
+            "payloadHash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+            "evidence": [
+              {
+                "evidenceId": "ev_pr_current_state_fresh_observation",
+                "kind": "external_observation",
+                "sourceEventId": "evt_pr_current_state_fresh_observed",
+                "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                "observedAt": "2026-05-24T18:35:00.000Z",
+                "sensitivity": "internal",
+                "expiresAt": "2026-05-24T18:40:00.000Z",
+                "metadata": {
+                  "observationType": "pull_request_state"
+                }
+              }
+            ]
+          }
+        },
+        "payloadHash": "sha256:9922cf31eaae1da1e52752fe2424452682cd7de922f9a63cf247735a4d47d4b7",
+        "causationId": "evt_pr_current_state_fresh_effect_requested",
+        "correlationId": "corr_pr_current_state_fresh",
+        "occurredAt": "2026-05-24T18:35:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_fresh_final_proposed",
+        "runId": "run_pr_current_state_fresh",
+        "sequence": 5,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_pr_current_state_fresh",
+            "runId": "run_pr_current_state_fresh",
+            "claims": [
+              {
+                "claimId": "claim_pr_current_state_fresh",
+                "type": "current_state",
+                "statement": "Pull request pr-217 is open.",
+                "predicate": {
+                  "kind": "current_state",
+                  "subjectType": "pull_request",
+                  "subjectId": "pr-217",
+                  "property": "state",
+                  "operator": "equals",
+                  "expectedValue": "open",
+                  "observationType": "pull_request_state",
+                  "freshnessRequirementMs": 300000
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_current_state_fresh_observation",
+                    "kind": "external_observation",
+                    "sourceEventId": "evt_pr_current_state_fresh_observed",
+                    "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                    "observedAt": "2026-05-24T18:35:00.000Z",
+                    "sensitivity": "internal",
+                    "expiresAt": "2026-05-24T18:40:00.000Z",
+                    "metadata": {
+                      "observationType": "pull_request_state"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "Pull request pr-217 is open."
+          }
+        },
+        "payloadHash": "sha256:708ae732c6b16ebcabcb7fd35d675e38fb0e125ac0f4d7621221319c7a611793",
+        "causationId": "evt_pr_current_state_fresh_observed",
+        "correlationId": "corr_pr_current_state_fresh",
+        "occurredAt": "2026-05-24T18:37:00.000Z"
+      }
+    ]
+  },
+  "expected": {
+    "proof": {
+      "proofId": "proof_pr_current_state_fresh",
+      "runId": "run_pr_current_state_fresh",
+      "candidateId": "candidate_pr_current_state_fresh",
+      "generatedAt": "2026-05-24T18:37:00.000Z",
+      "verdict": "pass",
+      "claims": [
+        {
+          "claimId": "claim_pr_current_state_fresh",
+          "supported": true,
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_current_state_fresh_observation",
+              "kind": "external_observation",
+              "sourceEventId": "evt_pr_current_state_fresh_observed",
+              "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+              "observedAt": "2026-05-24T18:35:00.000Z",
+              "sensitivity": "internal",
+              "expiresAt": "2026-05-24T18:40:00.000Z",
+              "metadata": {
+                "observationType": "pull_request_state"
+              }
+            }
+          ],
+          "mismatchIds": []
+        }
+      ],
+      "approvedClaimIds": ["claim_pr_current_state_fresh"],
+      "rejectedClaimIds": [],
+      "blockingMismatches": [],
+      "evaluatedClaims": [
+        {
+          "claimId": "claim_pr_current_state_fresh",
+          "type": "current_state",
+          "statement": "Pull request pr-217 is open.",
+          "predicate": {
+            "kind": "current_state",
+            "subjectType": "pull_request",
+            "subjectId": "pr-217",
+            "property": "state",
+            "operator": "equals",
+            "expectedValue": "open",
+            "observationType": "pull_request_state",
+            "freshnessRequirementMs": 300000
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_current_state_fresh_observation",
+              "kind": "external_observation",
+              "sourceEventId": "evt_pr_current_state_fresh_observed",
+              "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+              "observedAt": "2026-05-24T18:35:00.000Z",
+              "sensitivity": "internal",
+              "expiresAt": "2026-05-24T18:40:00.000Z",
+              "metadata": {
+                "observationType": "pull_request_state"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ]
+    },
+    "mismatches": [],
+    "releaseDecision": {
+      "status": "released",
+      "runId": "run_pr_current_state_fresh",
+      "proofId": "proof_pr_current_state_fresh",
+      "approvedClaimIds": ["claim_pr_current_state_fresh"],
+      "blockingMismatchIds": [],
+      "finalMessage": "Pull request pr-217 is currently open."
+    },
+    "emittedEvents": [
+      {
+        "eventId": "evt_pr_current_state_fresh_proof_generated",
+        "runId": "run_pr_current_state_fresh",
+        "sequence": 6,
+        "type": "ProofGenerated",
+        "payload": {
+          "proof": {
+            "proofId": "proof_pr_current_state_fresh",
+            "runId": "run_pr_current_state_fresh",
+            "candidateId": "candidate_pr_current_state_fresh",
+            "generatedAt": "2026-05-24T18:37:00.000Z",
+            "verdict": "pass",
+            "claims": [
+              {
+                "claimId": "claim_pr_current_state_fresh",
+                "supported": true,
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_current_state_fresh_observation",
+                    "kind": "external_observation",
+                    "sourceEventId": "evt_pr_current_state_fresh_observed",
+                    "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                    "observedAt": "2026-05-24T18:35:00.000Z",
+                    "sensitivity": "internal",
+                    "expiresAt": "2026-05-24T18:40:00.000Z",
+                    "metadata": {
+                      "observationType": "pull_request_state"
+                    }
+                  }
+                ],
+                "mismatchIds": []
+              }
+            ],
+            "approvedClaimIds": ["claim_pr_current_state_fresh"],
+            "rejectedClaimIds": [],
+            "blockingMismatches": [],
+            "evaluatedClaims": [
+              {
+                "claimId": "claim_pr_current_state_fresh",
+                "type": "current_state",
+                "statement": "Pull request pr-217 is open.",
+                "predicate": {
+                  "kind": "current_state",
+                  "subjectType": "pull_request",
+                  "subjectId": "pr-217",
+                  "property": "state",
+                  "operator": "equals",
+                  "expectedValue": "open",
+                  "observationType": "pull_request_state",
+                  "freshnessRequirementMs": 300000
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_current_state_fresh_observation",
+                    "kind": "external_observation",
+                    "sourceEventId": "evt_pr_current_state_fresh_observed",
+                    "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                    "observedAt": "2026-05-24T18:35:00.000Z",
+                    "sensitivity": "internal",
+                    "expiresAt": "2026-05-24T18:40:00.000Z",
+                    "metadata": {
+                      "observationType": "pull_request_state"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ]
+          }
+        },
+        "payloadHash": "sha256:a8ef17331d15efbba703c75e512825f45818a692c6f38ab569eb9073e860fe5e",
+        "causationId": "evt_pr_current_state_fresh_final_proposed",
+        "correlationId": "corr_pr_current_state_fresh",
+        "occurredAt": "2026-05-24T18:37:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_fresh_release_decided",
+        "runId": "run_pr_current_state_fresh",
+        "sequence": 7,
+        "type": "ReleaseDecided",
+        "payload": {
+          "decision": {
+            "status": "released",
+            "runId": "run_pr_current_state_fresh",
+            "proofId": "proof_pr_current_state_fresh",
+            "approvedClaimIds": ["claim_pr_current_state_fresh"],
+            "blockingMismatchIds": [],
+            "finalMessage": "Pull request pr-217 is currently open."
+          }
+        },
+        "payloadHash": "sha256:f564a64b8719ffb71c20aae74b128bf918c44427091dd32ccbaae3331fdac172",
+        "causationId": "evt_pr_current_state_fresh_proof_generated",
+        "correlationId": "corr_pr_current_state_fresh",
+        "occurredAt": "2026-05-24T18:37:00.100Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_fresh_final_released",
+        "runId": "run_pr_current_state_fresh",
+        "sequence": 8,
+        "type": "FinalReleased",
+        "payload": {
+          "decision": {
+            "status": "released",
+            "runId": "run_pr_current_state_fresh",
+            "proofId": "proof_pr_current_state_fresh",
+            "approvedClaimIds": ["claim_pr_current_state_fresh"],
+            "blockingMismatchIds": [],
+            "finalMessage": "Pull request pr-217 is currently open."
+          },
+          "candidate": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_pr_current_state_fresh",
+            "runId": "run_pr_current_state_fresh",
+            "claims": [
+              {
+                "claimId": "claim_pr_current_state_fresh",
+                "type": "current_state",
+                "statement": "Pull request pr-217 is open.",
+                "predicate": {
+                  "kind": "current_state",
+                  "subjectType": "pull_request",
+                  "subjectId": "pr-217",
+                  "property": "state",
+                  "operator": "equals",
+                  "expectedValue": "open",
+                  "observationType": "pull_request_state",
+                  "freshnessRequirementMs": 300000
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_current_state_fresh_observation",
+                    "kind": "external_observation",
+                    "sourceEventId": "evt_pr_current_state_fresh_observed",
+                    "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                    "observedAt": "2026-05-24T18:35:00.000Z",
+                    "sensitivity": "internal",
+                    "expiresAt": "2026-05-24T18:40:00.000Z",
+                    "metadata": {
+                      "observationType": "pull_request_state"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "Pull request pr-217 is open."
+          }
+        },
+        "payloadHash": "sha256:ef7bb2c0c05cfce2424c2d73fdf599415a0336c88041460eb36245aab5794e68",
+        "causationId": "evt_pr_current_state_fresh_release_decided",
+        "correlationId": "corr_pr_current_state_fresh",
+        "occurredAt": "2026-05-24T18:37:00.200Z"
+      }
+    ]
+  }
+}

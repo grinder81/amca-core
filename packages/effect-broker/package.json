@@ -1,0 +1,20 @@
+{
+  "name": "@amca/effect-broker",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Governed in-memory effect lifecycle skeleton for AMCA; not a production external write broker.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@amca/capabilities": "workspace:*",
+    "@amca/contracts": "workspace:*",
+    "@amca/effect-sdk": "workspace:*",
+    "@amca/protocol": "workspace:*"
+  }
+}

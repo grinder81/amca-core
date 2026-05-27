@@ -1,0 +1,21 @@
+{
+  "name": "@amca/eval",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Regression and evaluation runner for AMCA; eval and benchmark output are not proof evidence.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@amca/contracts": "workspace:*",
+    "@amca/ledger": "workspace:*",
+    "@amca/projections": "workspace:*",
+    "@amca/protocol": "workspace:*",
+    "@amca/replay": "workspace:*"
+  }
+}

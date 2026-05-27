@@ -1,0 +1,16 @@
+{
+  "name": "@amca/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@amca/protocol": "workspace:*",
+    "zod": "^4.4.3"
+  }
+}

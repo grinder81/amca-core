@@ -1,0 +1,522 @@
+{
+  "id": "pr-current-state-stale-blocked",
+  "title": "Pull request current-state claim blocked with stale observation",
+  "case": "negative",
+  "profile": "standard",
+  "description": "A final candidate claims current pull request state using an observation outside its freshness window.",
+  "runtimeScope": {
+    "requiresRuntimeBehavior": false,
+    "implementsProofBehavior": false,
+    "implementsKernelBehavior": false,
+    "implementsCliBehavior": false
+  },
+  "given": {
+    "toolCommandRequest": {
+      "kind": "tool_command_request",
+      "commandId": "cmd_pr_current_state_stale",
+      "runId": "run_pr_current_state_stale",
+      "capabilityId": "vcs.pull_request.read",
+      "toolId": "vcs.getPullRequest",
+      "args": {
+        "repository": "amca",
+        "pullRequestId": "pr-216"
+      },
+      "sideEffectClass": "read",
+      "idempotencyKey": "idem_pr_current_state_stale"
+    },
+    "effectRequest": {
+      "effectId": "effect_pr_current_state_stale",
+      "commandId": "cmd_pr_current_state_stale",
+      "runId": "run_pr_current_state_stale",
+      "capabilityId": "vcs.pull_request.read",
+      "toolId": "vcs.getPullRequest",
+      "args": {
+        "repository": "amca",
+        "pullRequestId": "pr-216"
+      },
+      "sideEffectClass": "read",
+      "requestedAt": "2026-05-24T18:20:00.000Z",
+      "idempotencyKey": "idem_pr_current_state_stale"
+    },
+    "externalStateObservation": {
+      "observationId": "obs_pr_current_state_stale",
+      "runId": "run_pr_current_state_stale",
+      "observationType": "pull_request_state",
+      "subjectType": "pull_request",
+      "subjectId": "pr-216",
+      "observedState": {
+        "state": "open",
+        "head": "phase/testing-fixtures"
+      },
+      "observedAt": "2026-05-24T18:20:00.000Z",
+      "expiresAt": "2026-05-24T18:25:00.000Z",
+      "payloadHash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+      "evidence": [
+        {
+          "evidenceId": "ev_pr_current_state_stale_observation",
+          "kind": "external_observation",
+          "sourceEventId": "evt_pr_current_state_stale_observed",
+          "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+          "observedAt": "2026-05-24T18:20:00.000Z",
+          "sensitivity": "internal",
+          "expiresAt": "2026-05-24T18:25:00.000Z",
+          "metadata": {
+            "observationType": "pull_request_state"
+          }
+        }
+      ]
+    },
+    "finalCandidate": {
+      "kind": "final_candidate",
+      "candidateId": "candidate_pr_current_state_stale",
+      "runId": "run_pr_current_state_stale",
+      "claims": [
+        {
+          "claimId": "claim_pr_current_state_stale",
+          "type": "current_state",
+          "statement": "Pull request pr-216 is open.",
+          "predicate": {
+            "kind": "current_state",
+            "subjectType": "pull_request",
+            "subjectId": "pr-216",
+            "property": "state",
+            "operator": "equals",
+            "expectedValue": "open",
+            "observationType": "pull_request_state",
+            "freshnessRequirementMs": 300000
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_current_state_stale_observation",
+              "kind": "external_observation",
+              "sourceEventId": "evt_pr_current_state_stale_observed",
+              "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+              "observedAt": "2026-05-24T18:20:00.000Z",
+              "sensitivity": "internal",
+              "expiresAt": "2026-05-24T18:25:00.000Z",
+              "metadata": {
+                "observationType": "pull_request_state"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ],
+      "narrativeDraft": "Pull request pr-216 is open."
+    },
+    "runEvents": [
+      {
+        "eventId": "evt_pr_current_state_stale_run_started",
+        "runId": "run_pr_current_state_stale",
+        "sequence": 1,
+        "type": "RunStarted",
+        "payload": {
+          "runId": "run_pr_current_state_stale",
+          "profile": "standard",
+          "metadata": {
+            "scenarioId": "pr-current-state-stale-blocked"
+          }
+        },
+        "payloadHash": "sha256:543fd7e44e250203f9b00c62bdea4d41c2263a32673277d61454f9a564e84f20",
+        "causationId": null,
+        "correlationId": "corr_pr_current_state_stale",
+        "occurredAt": "2026-05-24T18:20:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_stale_tool_proposed",
+        "runId": "run_pr_current_state_stale",
+        "sequence": 2,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "tool_command_request",
+            "commandId": "cmd_pr_current_state_stale",
+            "runId": "run_pr_current_state_stale",
+            "capabilityId": "vcs.pull_request.read",
+            "toolId": "vcs.getPullRequest",
+            "args": {
+              "repository": "amca",
+              "pullRequestId": "pr-216"
+            },
+            "sideEffectClass": "read",
+            "idempotencyKey": "idem_pr_current_state_stale"
+          }
+        },
+        "payloadHash": "sha256:cb04b9256abb0fdfd7d26b0c996b5d8b810d588bf97b27ba610c22e147376288",
+        "causationId": "evt_pr_current_state_stale_run_started",
+        "correlationId": "corr_pr_current_state_stale",
+        "occurredAt": "2026-05-24T18:20:00.100Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_stale_effect_requested",
+        "runId": "run_pr_current_state_stale",
+        "sequence": 3,
+        "type": "EffectRequested",
+        "payload": {
+          "effectRequest": {
+            "effectId": "effect_pr_current_state_stale",
+            "commandId": "cmd_pr_current_state_stale",
+            "runId": "run_pr_current_state_stale",
+            "capabilityId": "vcs.pull_request.read",
+            "toolId": "vcs.getPullRequest",
+            "args": {
+              "repository": "amca",
+              "pullRequestId": "pr-216"
+            },
+            "sideEffectClass": "read",
+            "requestedAt": "2026-05-24T18:20:00.000Z",
+            "idempotencyKey": "idem_pr_current_state_stale"
+          }
+        },
+        "payloadHash": "sha256:0b434e13df9b841a05a5c62d3aab2bdd030d8203203e63fe7786409da7475156",
+        "causationId": "evt_pr_current_state_stale_tool_proposed",
+        "correlationId": "corr_pr_current_state_stale",
+        "occurredAt": "2026-05-24T18:20:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_stale_observed",
+        "runId": "run_pr_current_state_stale",
+        "sequence": 4,
+        "type": "ExternalStateObserved",
+        "payload": {
+          "observation": {
+            "observationId": "obs_pr_current_state_stale",
+            "runId": "run_pr_current_state_stale",
+            "observationType": "pull_request_state",
+            "subjectType": "pull_request",
+            "subjectId": "pr-216",
+            "observedState": {
+              "state": "open",
+              "head": "phase/testing-fixtures"
+            },
+            "observedAt": "2026-05-24T18:20:00.000Z",
+            "expiresAt": "2026-05-24T18:25:00.000Z",
+            "payloadHash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+            "evidence": [
+              {
+                "evidenceId": "ev_pr_current_state_stale_observation",
+                "kind": "external_observation",
+                "sourceEventId": "evt_pr_current_state_stale_observed",
+                "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                "observedAt": "2026-05-24T18:20:00.000Z",
+                "sensitivity": "internal",
+                "expiresAt": "2026-05-24T18:25:00.000Z",
+                "metadata": {
+                  "observationType": "pull_request_state"
+                }
+              }
+            ]
+          }
+        },
+        "payloadHash": "sha256:1cf766eafe98add20c32f146ce3f7652c0ce94b4ee915f2c2c93d3bd27e9de42",
+        "causationId": "evt_pr_current_state_stale_effect_requested",
+        "correlationId": "corr_pr_current_state_stale",
+        "occurredAt": "2026-05-24T18:20:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_stale_final_proposed",
+        "runId": "run_pr_current_state_stale",
+        "sequence": 5,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_pr_current_state_stale",
+            "runId": "run_pr_current_state_stale",
+            "claims": [
+              {
+                "claimId": "claim_pr_current_state_stale",
+                "type": "current_state",
+                "statement": "Pull request pr-216 is open.",
+                "predicate": {
+                  "kind": "current_state",
+                  "subjectType": "pull_request",
+                  "subjectId": "pr-216",
+                  "property": "state",
+                  "operator": "equals",
+                  "expectedValue": "open",
+                  "observationType": "pull_request_state",
+                  "freshnessRequirementMs": 300000
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_current_state_stale_observation",
+                    "kind": "external_observation",
+                    "sourceEventId": "evt_pr_current_state_stale_observed",
+                    "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                    "observedAt": "2026-05-24T18:20:00.000Z",
+                    "sensitivity": "internal",
+                    "expiresAt": "2026-05-24T18:25:00.000Z",
+                    "metadata": {
+                      "observationType": "pull_request_state"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "Pull request pr-216 is open."
+          }
+        },
+        "payloadHash": "sha256:ed19af3cbee44902ee0d8be016da6976ef13990f31a52c11d8ab2fbade309b99",
+        "causationId": "evt_pr_current_state_stale_observed",
+        "correlationId": "corr_pr_current_state_stale",
+        "occurredAt": "2026-05-24T18:32:00.000Z"
+      }
+    ]
+  },
+  "expected": {
+    "proof": {
+      "proofId": "proof_pr_current_state_stale",
+      "runId": "run_pr_current_state_stale",
+      "candidateId": "candidate_pr_current_state_stale",
+      "generatedAt": "2026-05-24T18:32:00.000Z",
+      "verdict": "fail",
+      "claims": [
+        {
+          "claimId": "claim_pr_current_state_stale",
+          "supported": false,
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_current_state_stale_observation",
+              "kind": "external_observation",
+              "sourceEventId": "evt_pr_current_state_stale_observed",
+              "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+              "observedAt": "2026-05-24T18:20:00.000Z",
+              "sensitivity": "internal",
+              "expiresAt": "2026-05-24T18:25:00.000Z",
+              "metadata": {
+                "observationType": "pull_request_state"
+              }
+            }
+          ],
+          "mismatchIds": ["mismatch_pr_current_state_stale"]
+        }
+      ],
+      "approvedClaimIds": [],
+      "rejectedClaimIds": ["claim_pr_current_state_stale"],
+      "blockingMismatches": [
+        {
+          "mismatchId": "mismatch_pr_current_state_stale",
+          "runId": "run_pr_current_state_stale",
+          "type": "stale_external_state",
+          "blocking": true,
+          "message": "The current_state claim depends on an expired external observation.",
+          "claimId": "claim_pr_current_state_stale",
+          "expected": {
+            "freshnessRequirementMs": 300000,
+            "latestAllowedObservedAt": "2026-05-24T18:27:00.000Z"
+          },
+          "actual": {
+            "observedAt": "2026-05-24T18:20:00.000Z",
+            "evaluatedAt": "2026-05-24T18:32:00.000Z"
+          }
+        }
+      ],
+      "evaluatedClaims": [
+        {
+          "claimId": "claim_pr_current_state_stale",
+          "type": "current_state",
+          "statement": "Pull request pr-216 is open.",
+          "predicate": {
+            "kind": "current_state",
+            "subjectType": "pull_request",
+            "subjectId": "pr-216",
+            "property": "state",
+            "operator": "equals",
+            "expectedValue": "open",
+            "observationType": "pull_request_state",
+            "freshnessRequirementMs": 300000
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_current_state_stale_observation",
+              "kind": "external_observation",
+              "sourceEventId": "evt_pr_current_state_stale_observed",
+              "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+              "observedAt": "2026-05-24T18:20:00.000Z",
+              "sensitivity": "internal",
+              "expiresAt": "2026-05-24T18:25:00.000Z",
+              "metadata": {
+                "observationType": "pull_request_state"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ]
+    },
+    "mismatches": [
+      {
+        "mismatchId": "mismatch_pr_current_state_stale",
+        "runId": "run_pr_current_state_stale",
+        "type": "stale_external_state",
+        "blocking": true,
+        "message": "The current_state claim depends on an expired external observation.",
+        "claimId": "claim_pr_current_state_stale",
+        "expected": {
+          "freshnessRequirementMs": 300000,
+          "latestAllowedObservedAt": "2026-05-24T18:27:00.000Z"
+        },
+        "actual": {
+          "observedAt": "2026-05-24T18:20:00.000Z",
+          "evaluatedAt": "2026-05-24T18:32:00.000Z"
+        }
+      }
+    ],
+    "releaseDecision": {
+      "status": "blocked",
+      "runId": "run_pr_current_state_stale",
+      "proofId": "proof_pr_current_state_stale",
+      "approvedClaimIds": [],
+      "blockingMismatchIds": ["mismatch_pr_current_state_stale"],
+      "repairHints": [
+        "Refresh the pull request state observation before release."
+      ]
+    },
+    "emittedEvents": [
+      {
+        "eventId": "evt_pr_current_state_stale_proof_generated",
+        "runId": "run_pr_current_state_stale",
+        "sequence": 6,
+        "type": "ProofGenerated",
+        "payload": {
+          "proof": {
+            "proofId": "proof_pr_current_state_stale",
+            "runId": "run_pr_current_state_stale",
+            "candidateId": "candidate_pr_current_state_stale",
+            "generatedAt": "2026-05-24T18:32:00.000Z",
+            "verdict": "fail",
+            "claims": [
+              {
+                "claimId": "claim_pr_current_state_stale",
+                "supported": false,
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_current_state_stale_observation",
+                    "kind": "external_observation",
+                    "sourceEventId": "evt_pr_current_state_stale_observed",
+                    "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                    "observedAt": "2026-05-24T18:20:00.000Z",
+                    "sensitivity": "internal",
+                    "expiresAt": "2026-05-24T18:25:00.000Z",
+                    "metadata": {
+                      "observationType": "pull_request_state"
+                    }
+                  }
+                ],
+                "mismatchIds": ["mismatch_pr_current_state_stale"]
+              }
+            ],
+            "approvedClaimIds": [],
+            "rejectedClaimIds": ["claim_pr_current_state_stale"],
+            "blockingMismatches": [
+              {
+                "mismatchId": "mismatch_pr_current_state_stale",
+                "runId": "run_pr_current_state_stale",
+                "type": "stale_external_state",
+                "blocking": true,
+                "message": "The current_state claim depends on an expired external observation.",
+                "claimId": "claim_pr_current_state_stale",
+                "expected": {
+                  "freshnessRequirementMs": 300000,
+                  "latestAllowedObservedAt": "2026-05-24T18:27:00.000Z"
+                },
+                "actual": {
+                  "observedAt": "2026-05-24T18:20:00.000Z",
+                  "evaluatedAt": "2026-05-24T18:32:00.000Z"
+                }
+              }
+            ],
+            "evaluatedClaims": [
+              {
+                "claimId": "claim_pr_current_state_stale",
+                "type": "current_state",
+                "statement": "Pull request pr-216 is open.",
+                "predicate": {
+                  "kind": "current_state",
+                  "subjectType": "pull_request",
+                  "subjectId": "pr-216",
+                  "property": "state",
+                  "operator": "equals",
+                  "expectedValue": "open",
+                  "observationType": "pull_request_state",
+                  "freshnessRequirementMs": 300000
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_current_state_stale_observation",
+                    "kind": "external_observation",
+                    "sourceEventId": "evt_pr_current_state_stale_observed",
+                    "hash": "sha256:809d591c417f243c6845330c3afc1e1583f492e908d034b2e03754473ce6e771",
+                    "observedAt": "2026-05-24T18:20:00.000Z",
+                    "sensitivity": "internal",
+                    "expiresAt": "2026-05-24T18:25:00.000Z",
+                    "metadata": {
+                      "observationType": "pull_request_state"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ]
+          }
+        },
+        "payloadHash": "sha256:5d6538a1e383f2e4602d6457f5a1a79c834038463b6229138cfb7aca274c1749",
+        "causationId": "evt_pr_current_state_stale_final_proposed",
+        "correlationId": "corr_pr_current_state_stale",
+        "occurredAt": "2026-05-24T18:32:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_stale_mismatch_detected",
+        "runId": "run_pr_current_state_stale",
+        "sequence": 7,
+        "type": "MismatchDetected",
+        "payload": {
+          "mismatch": {
+            "mismatchId": "mismatch_pr_current_state_stale",
+            "runId": "run_pr_current_state_stale",
+            "type": "stale_external_state",
+            "blocking": true,
+            "message": "The current_state claim depends on an expired external observation.",
+            "claimId": "claim_pr_current_state_stale",
+            "expected": {
+              "freshnessRequirementMs": 300000,
+              "latestAllowedObservedAt": "2026-05-24T18:27:00.000Z"
+            },
+            "actual": {
+              "observedAt": "2026-05-24T18:20:00.000Z",
+              "evaluatedAt": "2026-05-24T18:32:00.000Z"
+            }
+          }
+        },
+        "payloadHash": "sha256:0d8926148c791eb21289bd521524d2f558fdb50fcbaf317d67be7c3291003780",
+        "causationId": "evt_pr_current_state_stale_proof_generated",
+        "correlationId": "corr_pr_current_state_stale",
+        "occurredAt": "2026-05-24T18:32:00.100Z"
+      },
+      {
+        "eventId": "evt_pr_current_state_stale_release_decided",
+        "runId": "run_pr_current_state_stale",
+        "sequence": 8,
+        "type": "ReleaseDecided",
+        "payload": {
+          "decision": {
+            "status": "blocked",
+            "runId": "run_pr_current_state_stale",
+            "proofId": "proof_pr_current_state_stale",
+            "approvedClaimIds": [],
+            "blockingMismatchIds": ["mismatch_pr_current_state_stale"],
+            "repairHints": [
+              "Refresh the pull request state observation before release."
+            ]
+          }
+        },
+        "payloadHash": "sha256:98f21270493a1d87a6611b4392013601f7c137e1540c6bffc8a3712e8f48a1de",
+        "causationId": "evt_pr_current_state_stale_proof_generated",
+        "correlationId": "corr_pr_current_state_stale",
+        "occurredAt": "2026-05-24T18:32:00.200Z"
+      }
+    ]
+  }
+}

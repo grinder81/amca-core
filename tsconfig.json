@@ -1,0 +1,30 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/protocol" },
+    { "path": "./packages/contracts" },
+    { "path": "./packages/ledger" },
+    { "path": "./packages/proof" },
+    { "path": "./packages/capabilities" },
+    { "path": "./packages/effect-sdk" },
+    { "path": "./packages/effect-broker" },
+    { "path": "./packages/adapters-tools" },
+    { "path": "./packages/adapters-conformance" },
+    { "path": "./packages/adapters-langgraph" },
+    { "path": "./packages/adapters-temporal" },
+    { "path": "./packages/provider-harness" },
+    { "path": "./packages/projections" },
+    { "path": "./packages/kernel" },
+    { "path": "./packages/ledger-local" },
+    { "path": "./packages/ledger-postgres" },
+    { "path": "./packages/harness" },
+    { "path": "./packages/replay" },
+    { "path": "./packages/eval" },
+    { "path": "./packages/reconciliation" },
+    { "path": "./packages/security" },
+    { "path": "./packages/service" },
+    { "path": "./packages/observability" },
+    { "path": "./packages/testing" },
+    { "path": "./packages/cli" }
+  ]
+}

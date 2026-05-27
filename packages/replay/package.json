@@ -1,0 +1,18 @@
+{
+  "name": "@amca/replay",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run --root ../.. packages/replay/src"
+  },
+  "dependencies": {
+    "@amca/contracts": "workspace:*",
+    "@amca/kernel": "workspace:*",
+    "@amca/protocol": "workspace:*"
+  }
+}

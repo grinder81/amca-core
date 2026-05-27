@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "capabilityId": "github.create_pull_request",
+  "profile": "standard",
+  "sideEffectClass": "idempotent_write",
+  "description": "Static contract for a governed pull-request creation capability. This manifest declares schemas and proof requirements only; it performs no GitHub API call.",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "amca:capability:github.create_pull_request:input:v0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["owner", "repo", "baseRef", "headRef", "title", "draft"],
+    "properties": {
+      "owner": {
+        "type": "string",
+        "minLength": 1
+      },
+      "repo": {
+        "type": "string",
+        "minLength": 1
+      },
+      "baseRef": {
+        "type": "string",
+        "minLength": 1
+      },
+      "headRef": {
+        "type": "string",
+        "minLength": 1
+      },
+      "title": {
+        "type": "string",
+        "minLength": 1
+      },
+      "body": {
+        "type": "string"
+      },
+      "draft": {
+        "type": "boolean"
+      }
+    }
+  },
+  "receiptSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "amca:capability:github.create_pull_request:receipt:v0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["actionVerb", "subjectType", "targetType", "targetId", "url"],
+    "properties": {
+      "actionVerb": {
+        "const": "created"
+      },
+      "subjectType": {
+        "const": "agent"
+      },
+      "subjectId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "targetType": {
+        "const": "pull_request"
+      },
+      "targetId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "url": {
+        "type": "string",
+        "format": "uri"
+      }
+    }
+  },
+  "evidence": [
+    {
+      "evidenceKind": "effect_receipt",
+      "receiptType": "github.pull_request_created",
+      "description": "The pull-request creation receipt admitted by EffectReceiptRecorded."
+    }
+  ],
+  "supportedClaims": [
+    {
+      "claimType": "historical_action",
+      "predicateKind": "historical_action",
+      "requiredReceiptType": "github.pull_request_created",
+      "actionVerbs": ["created"],
+      "subjectTypes": ["agent"],
+      "targetTypes": ["pull_request"]
+    }
+  ],
+  "proofRules": [
+    {
+      "ruleId": "amca.v0.proof.historical_action",
+      "version": 1,
+      "claimType": "historical_action",
+      "predicateKind": "historical_action",
+      "description": "A historical action claim is supported by a matching successful effect receipt.",
+      "evidence": [
+        {
+          "requirementId": "historical_action.effect_receipt",
+          "evidenceKind": "effect_receipt",
+          "source": "claim.evidenceRefs",
+          "minimumCount": 1,
+          "resolvesTo": "effect_receipt"
+        }
+      ],
+      "match": {
+        "operator": "all",
+        "clauses": [
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.receiptType"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.requiredReceiptType"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.status"
+            },
+            "right": {
+              "source": "literal",
+              "value": "succeeded"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.capabilityId"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.capabilityId"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.payload.actionVerb"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.actionVerb"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.payload.targetType"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.targetType"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.payload.targetId"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.targetId"
+            },
+            "presence": "when_claim_field_present"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "contractOnly": true,
+    "runtimeImplemented": false,
+    "declaresExternalWrite": true,
+    "requiresFutureIdempotencyKey": true
+  }
+}

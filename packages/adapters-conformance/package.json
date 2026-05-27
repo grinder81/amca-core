@@ -1,0 +1,17 @@
+{
+  "name": "@amca/adapters-conformance",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@amca/contracts": "workspace:*",
+    "@amca/protocol": "workspace:*"
+  }
+}

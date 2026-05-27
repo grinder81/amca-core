@@ -1,0 +1,17 @@
+{
+  "name": "@amca/observability",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Redacted AMCA operational telemetry, metrics, traces, and audit reports; observability output is not proof evidence.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run --root ../.. packages/observability/src"
+  },
+  "dependencies": {
+    "@amca/protocol": "workspace:*"
+  }
+}

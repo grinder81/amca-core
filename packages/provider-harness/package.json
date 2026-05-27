@@ -1,0 +1,20 @@
+{
+  "name": "@amca/provider-harness",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OpenAI-compatible local provider harness for AMCA proposal candidates; not proof, receipt, release, or tool-execution authority.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run src",
+    "test:live": "vitest run src/live-provider-harness.test.ts"
+  },
+  "dependencies": {
+    "@amca/adapters-conformance": "workspace:*",
+    "@amca/contracts": "workspace:*",
+    "@amca/protocol": "workspace:*"
+  }
+}

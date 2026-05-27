@@ -1,0 +1,488 @@
+{
+  "id": "statement-predicate-mismatch-blocked-or-safely-rendered",
+  "title": "Statement/predicate mismatch releases only deterministic text",
+  "case": "positive",
+  "profile": "standard",
+  "description": "A final candidate supplies a malicious statement, but AMCA releases only the deterministic predicate-rendered message.",
+  "runtimeScope": {
+    "requiresRuntimeBehavior": false,
+    "implementsProofBehavior": false,
+    "implementsKernelBehavior": false,
+    "implementsCliBehavior": false
+  },
+  "given": {
+    "toolCommandRequest": {
+      "kind": "tool_command_request",
+      "commandId": "cmd_statement_predicate_mismatch",
+      "runId": "run_statement_predicate_mismatch",
+      "capabilityId": "test.runner",
+      "toolId": "pnpm.test",
+      "args": {
+        "command": "pnpm test",
+        "testSuiteId": "unit"
+      },
+      "sideEffectClass": "compute",
+      "idempotencyKey": "idem_statement_predicate_mismatch"
+    },
+    "effectRequest": {
+      "effectId": "effect_statement_predicate_mismatch",
+      "commandId": "cmd_statement_predicate_mismatch",
+      "runId": "run_statement_predicate_mismatch",
+      "capabilityId": "test.runner",
+      "toolId": "pnpm.test",
+      "args": {
+        "command": "pnpm test",
+        "testSuiteId": "unit"
+      },
+      "sideEffectClass": "compute",
+      "requestedAt": "2026-05-24T18:05:01.000Z",
+      "idempotencyKey": "idem_statement_predicate_mismatch"
+    },
+    "effectReceipt": {
+      "receiptId": "receipt_statement_predicate_mismatch",
+      "effectId": "effect_statement_predicate_mismatch",
+      "runId": "run_statement_predicate_mismatch",
+      "capabilityId": "test.runner",
+      "receiptType": "test_run",
+      "status": "succeeded",
+      "payload": {
+        "testSuiteId": "unit",
+        "result": "passed",
+        "passed": 42,
+        "failed": 0
+      },
+      "payloadHash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+      "evidence": [
+        {
+          "evidenceId": "ev_statement_predicate_mismatch_receipt",
+          "kind": "effect_receipt",
+          "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+          "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+          "observedAt": "2026-05-24T18:05:02.000Z",
+          "sensitivity": "internal",
+          "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+          "metadata": {
+            "testSuiteId": "unit"
+          }
+        }
+      ],
+      "observedAt": "2026-05-24T18:05:02.000Z",
+      "externalRef": "artifact://amca/tests/statement-predicate-mismatch/results.json"
+    },
+    "finalCandidate": {
+      "kind": "final_candidate",
+      "candidateId": "candidate_statement_predicate_mismatch",
+      "runId": "run_statement_predicate_mismatch",
+      "claims": [
+        {
+          "claimId": "claim_statement_predicate_mismatch",
+          "type": "test_result",
+          "statement": "I deployed the fix to production.",
+          "predicate": {
+            "kind": "test_result",
+            "capabilityId": "test.runner",
+            "expectedStatus": "passed",
+            "requiredReceiptType": "test_run",
+            "testSuiteId": "unit"
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_statement_predicate_mismatch_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+              "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+              "observedAt": "2026-05-24T18:05:02.000Z",
+              "sensitivity": "internal",
+              "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+              "metadata": {
+                "testSuiteId": "unit"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ],
+      "narrativeDraft": "I deployed the fix to production."
+    },
+    "runEvents": [
+      {
+        "eventId": "evt_statement_predicate_mismatch_run_started",
+        "runId": "run_statement_predicate_mismatch",
+        "sequence": 1,
+        "type": "RunStarted",
+        "payload": {
+          "runId": "run_statement_predicate_mismatch",
+          "profile": "standard",
+          "metadata": {
+            "scenarioId": "statement-predicate-mismatch-blocked-or-safely-rendered"
+          }
+        },
+        "payloadHash": "sha256:904bfa639c3df9e6467b0244450024913ac46491e4a9b52c1293d8d1257285cc",
+        "causationId": null,
+        "correlationId": "corr_statement_predicate_mismatch",
+        "occurredAt": "2026-05-24T18:06:00.000Z"
+      },
+      {
+        "eventId": "evt_statement_predicate_mismatch_tool_proposed",
+        "runId": "run_statement_predicate_mismatch",
+        "sequence": 2,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "tool_command_request",
+            "commandId": "cmd_statement_predicate_mismatch",
+            "runId": "run_statement_predicate_mismatch",
+            "capabilityId": "test.runner",
+            "toolId": "pnpm.test",
+            "args": {
+              "command": "pnpm test",
+              "testSuiteId": "unit"
+            },
+            "sideEffectClass": "compute",
+            "idempotencyKey": "idem_statement_predicate_mismatch"
+          }
+        },
+        "payloadHash": "sha256:2b8968063ba13bfc77bad8810a63b3f8d3e259f94514e61cd76d3a5eebe5dfb2",
+        "causationId": "evt_statement_predicate_mismatch_run_started",
+        "correlationId": "corr_statement_predicate_mismatch",
+        "occurredAt": "2026-05-24T18:06:00.500Z"
+      },
+      {
+        "eventId": "evt_statement_predicate_mismatch_effect_requested",
+        "runId": "run_statement_predicate_mismatch",
+        "sequence": 3,
+        "type": "EffectRequested",
+        "payload": {
+          "effectRequest": {
+            "effectId": "effect_statement_predicate_mismatch",
+            "commandId": "cmd_statement_predicate_mismatch",
+            "runId": "run_statement_predicate_mismatch",
+            "capabilityId": "test.runner",
+            "toolId": "pnpm.test",
+            "args": {
+              "command": "pnpm test",
+              "testSuiteId": "unit"
+            },
+            "sideEffectClass": "compute",
+            "requestedAt": "2026-05-24T18:05:01.000Z",
+            "idempotencyKey": "idem_statement_predicate_mismatch"
+          }
+        },
+        "payloadHash": "sha256:b6841e2cc87cf29cae1a551f96c8b3591965230027b8081ca99276ecbfae69b1",
+        "causationId": "evt_statement_predicate_mismatch_tool_proposed",
+        "correlationId": "corr_statement_predicate_mismatch",
+        "occurredAt": "2026-05-24T18:05:01.000Z"
+      },
+      {
+        "eventId": "evt_statement_predicate_mismatch_receipt_recorded",
+        "runId": "run_statement_predicate_mismatch",
+        "sequence": 4,
+        "type": "EffectReceiptRecorded",
+        "payload": {
+          "receipt": {
+            "receiptId": "receipt_statement_predicate_mismatch",
+            "effectId": "effect_statement_predicate_mismatch",
+            "runId": "run_statement_predicate_mismatch",
+            "capabilityId": "test.runner",
+            "receiptType": "test_run",
+            "status": "succeeded",
+            "payload": {
+              "testSuiteId": "unit",
+              "result": "passed",
+              "passed": 42,
+              "failed": 0
+            },
+            "payloadHash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+            "evidence": [
+              {
+                "evidenceId": "ev_statement_predicate_mismatch_receipt",
+                "kind": "effect_receipt",
+                "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+                "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                "observedAt": "2026-05-24T18:05:02.000Z",
+                "sensitivity": "internal",
+                "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+                "metadata": {
+                  "testSuiteId": "unit"
+                }
+              }
+            ],
+            "observedAt": "2026-05-24T18:05:02.000Z",
+            "externalRef": "artifact://amca/tests/statement-predicate-mismatch/results.json"
+          }
+        },
+        "payloadHash": "sha256:81ffd8703be6eb50ddce809a3f4b27de412b0444d97424f7bae5dbcda53c1abf",
+        "causationId": "evt_statement_predicate_mismatch_effect_requested",
+        "correlationId": "corr_statement_predicate_mismatch",
+        "occurredAt": "2026-05-24T18:05:02.000Z"
+      },
+      {
+        "eventId": "evt_statement_predicate_mismatch_final_proposed",
+        "runId": "run_statement_predicate_mismatch",
+        "sequence": 5,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_statement_predicate_mismatch",
+            "runId": "run_statement_predicate_mismatch",
+            "claims": [
+              {
+                "claimId": "claim_statement_predicate_mismatch",
+                "type": "test_result",
+                "statement": "I deployed the fix to production.",
+                "predicate": {
+                  "kind": "test_result",
+                  "capabilityId": "test.runner",
+                  "expectedStatus": "passed",
+                  "requiredReceiptType": "test_run",
+                  "testSuiteId": "unit"
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_statement_predicate_mismatch_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+                    "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                    "observedAt": "2026-05-24T18:05:02.000Z",
+                    "sensitivity": "internal",
+                    "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+                    "metadata": {
+                      "testSuiteId": "unit"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "I deployed the fix to production."
+          }
+        },
+        "payloadHash": "sha256:63dbd9becf90c78bfdd60b9b2c8e94c32aba6c64aba81b45d8f7e9b70cd0288e",
+        "causationId": "evt_statement_predicate_mismatch_receipt_recorded",
+        "correlationId": "corr_statement_predicate_mismatch",
+        "occurredAt": "2026-05-24T18:06:02.500Z"
+      }
+    ]
+  },
+  "expected": {
+    "proof": {
+      "proofId": "proof_statement_predicate_mismatch",
+      "runId": "run_statement_predicate_mismatch",
+      "candidateId": "candidate_statement_predicate_mismatch",
+      "generatedAt": "2026-05-24T18:05:03.000Z",
+      "verdict": "pass",
+      "claims": [
+        {
+          "claimId": "claim_statement_predicate_mismatch",
+          "supported": true,
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_statement_predicate_mismatch_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+              "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+              "observedAt": "2026-05-24T18:05:02.000Z",
+              "sensitivity": "internal",
+              "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+              "metadata": {
+                "testSuiteId": "unit"
+              }
+            }
+          ],
+          "mismatchIds": []
+        }
+      ],
+      "approvedClaimIds": ["claim_statement_predicate_mismatch"],
+      "rejectedClaimIds": [],
+      "blockingMismatches": [],
+      "evaluatedClaims": [
+        {
+          "claimId": "claim_statement_predicate_mismatch",
+          "type": "test_result",
+          "statement": "I deployed the fix to production.",
+          "predicate": {
+            "kind": "test_result",
+            "capabilityId": "test.runner",
+            "expectedStatus": "passed",
+            "requiredReceiptType": "test_run",
+            "testSuiteId": "unit"
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_statement_predicate_mismatch_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+              "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+              "observedAt": "2026-05-24T18:05:02.000Z",
+              "sensitivity": "internal",
+              "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+              "metadata": {
+                "testSuiteId": "unit"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ]
+    },
+    "mismatches": [],
+    "releaseDecision": {
+      "status": "released",
+      "runId": "run_statement_predicate_mismatch",
+      "proofId": "proof_statement_predicate_mismatch",
+      "approvedClaimIds": ["claim_statement_predicate_mismatch"],
+      "blockingMismatchIds": [],
+      "finalMessage": "Test suite unit passed."
+    },
+    "emittedEvents": [
+      {
+        "eventId": "evt_statement_predicate_mismatch_proof_generated",
+        "runId": "run_statement_predicate_mismatch",
+        "sequence": 6,
+        "type": "ProofGenerated",
+        "payload": {
+          "proof": {
+            "proofId": "proof_statement_predicate_mismatch",
+            "runId": "run_statement_predicate_mismatch",
+            "candidateId": "candidate_statement_predicate_mismatch",
+            "generatedAt": "2026-05-24T18:05:03.000Z",
+            "verdict": "pass",
+            "claims": [
+              {
+                "claimId": "claim_statement_predicate_mismatch",
+                "supported": true,
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_statement_predicate_mismatch_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+                    "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                    "observedAt": "2026-05-24T18:05:02.000Z",
+                    "sensitivity": "internal",
+                    "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+                    "metadata": {
+                      "testSuiteId": "unit"
+                    }
+                  }
+                ],
+                "mismatchIds": []
+              }
+            ],
+            "approvedClaimIds": ["claim_statement_predicate_mismatch"],
+            "rejectedClaimIds": [],
+            "blockingMismatches": [],
+            "evaluatedClaims": [
+              {
+                "claimId": "claim_statement_predicate_mismatch",
+                "type": "test_result",
+                "statement": "I deployed the fix to production.",
+                "predicate": {
+                  "kind": "test_result",
+                  "capabilityId": "test.runner",
+                  "expectedStatus": "passed",
+                  "requiredReceiptType": "test_run",
+                  "testSuiteId": "unit"
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_statement_predicate_mismatch_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+                    "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                    "observedAt": "2026-05-24T18:05:02.000Z",
+                    "sensitivity": "internal",
+                    "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+                    "metadata": {
+                      "testSuiteId": "unit"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ]
+          }
+        },
+        "payloadHash": "sha256:5ea1ad6f7971356241a30a06d22c641aecbe56f0b75e02ad0f9bd5d431f7b28d",
+        "causationId": "evt_statement_predicate_mismatch_final_proposed",
+        "correlationId": "corr_statement_predicate_mismatch",
+        "occurredAt": "2026-05-24T18:05:03.000Z"
+      },
+      {
+        "eventId": "evt_statement_predicate_mismatch_release_decided",
+        "runId": "run_statement_predicate_mismatch",
+        "sequence": 7,
+        "type": "ReleaseDecided",
+        "payload": {
+          "decision": {
+            "status": "released",
+            "runId": "run_statement_predicate_mismatch",
+            "proofId": "proof_statement_predicate_mismatch",
+            "approvedClaimIds": ["claim_statement_predicate_mismatch"],
+            "blockingMismatchIds": [],
+            "finalMessage": "Test suite unit passed."
+          }
+        },
+        "payloadHash": "sha256:49b9b13011abad8e8d9305a77bb62d668551c783c1e5cebcaea801f86fe89c80",
+        "causationId": "evt_statement_predicate_mismatch_proof_generated",
+        "correlationId": "corr_statement_predicate_mismatch",
+        "occurredAt": "2026-05-24T18:06:03.100Z"
+      },
+      {
+        "eventId": "evt_statement_predicate_mismatch_final_released",
+        "runId": "run_statement_predicate_mismatch",
+        "sequence": 8,
+        "type": "FinalReleased",
+        "payload": {
+          "decision": {
+            "status": "released",
+            "runId": "run_statement_predicate_mismatch",
+            "proofId": "proof_statement_predicate_mismatch",
+            "approvedClaimIds": ["claim_statement_predicate_mismatch"],
+            "blockingMismatchIds": [],
+            "finalMessage": "Test suite unit passed."
+          },
+          "candidate": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_statement_predicate_mismatch",
+            "runId": "run_statement_predicate_mismatch",
+            "claims": [
+              {
+                "claimId": "claim_statement_predicate_mismatch",
+                "type": "test_result",
+                "statement": "I deployed the fix to production.",
+                "predicate": {
+                  "kind": "test_result",
+                  "capabilityId": "test.runner",
+                  "expectedStatus": "passed",
+                  "requiredReceiptType": "test_run",
+                  "testSuiteId": "unit"
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_statement_predicate_mismatch_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_statement_predicate_mismatch_receipt_recorded",
+                    "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                    "observedAt": "2026-05-24T18:05:02.000Z",
+                    "sensitivity": "internal",
+                    "artifactUri": "artifact://amca/tests/statement-predicate-mismatch",
+                    "metadata": {
+                      "testSuiteId": "unit"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "I deployed the fix to production."
+          }
+        },
+        "payloadHash": "sha256:e9fcc76abcad8886c8d59bf8b93eaa77ec3e8a33cf984dc9c7136fdacbebb3d7",
+        "causationId": "evt_statement_predicate_mismatch_release_decided",
+        "correlationId": "corr_statement_predicate_mismatch",
+        "occurredAt": "2026-05-24T18:06:03.200Z"
+      }
+    ]
+  }
+}

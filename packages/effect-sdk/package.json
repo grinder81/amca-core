@@ -1,0 +1,17 @@
+{
+  "name": "@amca/effect-sdk",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run src"
+  },
+  "dependencies": {
+    "@amca/capabilities": "workspace:*",
+    "@amca/protocol": "workspace:*"
+  }
+}

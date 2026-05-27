@@ -1,0 +1,25 @@
+{
+  "name": "@amca/cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "amca": "./dist/index.js"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@amca/capabilities": "workspace:*",
+    "@amca/contracts": "workspace:*",
+    "@amca/harness": "workspace:*",
+    "@amca/kernel": "workspace:*",
+    "@amca/ledger-local": "workspace:*",
+    "@amca/protocol": "workspace:*",
+    "@amca/replay": "workspace:*",
+    "@amca/testing": "workspace:*"
+  }
+}

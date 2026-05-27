@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "capabilityId": "github.observe_pull_request_state",
+  "profile": "standard",
+  "sideEffectClass": "read",
+  "description": "Static contract for a governed pull-request state observation capability. This manifest declares schemas and proof requirements only; it performs no GitHub API call.",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "amca:capability:github.observe_pull_request_state:input:v0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["owner", "repo", "pullRequestNumber"],
+    "properties": {
+      "owner": {
+        "type": "string",
+        "minLength": 1
+      },
+      "repo": {
+        "type": "string",
+        "minLength": 1
+      },
+      "pullRequestNumber": {
+        "type": "integer",
+        "minimum": 1
+      }
+    }
+  },
+  "receiptSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "amca:capability:github.observe_pull_request_state:receipt:v0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "observationType",
+      "subjectType",
+      "subjectId",
+      "observedState",
+      "observedAt",
+      "expiresAt"
+    ],
+    "properties": {
+      "observationType": {
+        "const": "github.pull_request_state"
+      },
+      "subjectType": {
+        "const": "pull_request"
+      },
+      "subjectId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "observedState": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["state"],
+        "properties": {
+          "state": {
+            "enum": ["open", "closed", "merged"]
+          },
+          "draft": {
+            "type": "boolean"
+          }
+        }
+      },
+      "observedAt": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "expiresAt": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "evidence": [
+    {
+      "evidenceKind": "external_observation",
+      "observationType": "github.pull_request_state",
+      "description": "The pull-request state observation admitted by ExternalStateObserved."
+    }
+  ],
+  "supportedClaims": [
+    {
+      "claimType": "current_state",
+      "predicateKind": "current_state",
+      "observationType": "github.pull_request_state",
+      "supportedOperators": ["equals", "not_equals", "contains"],
+      "maximumFreshnessRequirementMs": 300000
+    }
+  ],
+  "proofRules": [
+    {
+      "ruleId": "amca.v0.proof.current_state",
+      "version": 1,
+      "claimType": "current_state",
+      "predicateKind": "current_state",
+      "description": "A current-state claim is supported by a matching fresh external observation.",
+      "evidence": [
+        {
+          "requirementId": "current_state.external_observation",
+          "evidenceKind": "external_observation",
+          "source": "claim.evidenceRefs",
+          "minimumCount": 1,
+          "resolvesTo": "external_state_observation"
+        }
+      ],
+      "match": {
+        "operator": "all",
+        "clauses": [
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "external_observation",
+              "path": "externalObservation.observationType"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.observationType"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "external_observation",
+              "path": "externalObservation.subjectType"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.subjectType"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "external_observation",
+              "path": "externalObservation.subjectId"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.subjectId"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "fresh_within",
+            "observedAt": {
+              "source": "external_observation",
+              "path": "externalObservation.observedAt"
+            },
+            "ttlMs": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.freshnessRequirementMs"
+            },
+            "evaluatedAt": "proof.generatedAt"
+          },
+          {
+            "kind": "observed_state_satisfies_predicate",
+            "observedValue": {
+              "source": "external_observation_dynamic",
+              "root": "externalObservation.observedState",
+              "pathFrom": "claim.predicate.property"
+            },
+            "operator": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.operator"
+            },
+            "expectedValue": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.expectedValue"
+            },
+            "supportedOperators": ["equals", "not_equals", "contains"]
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "contractOnly": true,
+    "runtimeImplemented": false
+  }
+}

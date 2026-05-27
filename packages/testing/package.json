@@ -1,0 +1,39 @@
+{
+  "name": "@amca/testing",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@amca/adapters-temporal": "workspace:*",
+    "@amca/adapters-tools": "workspace:*",
+    "@amca/adapters-conformance": "workspace:*",
+    "@amca/adapters-langgraph": "workspace:*",
+    "@amca/capabilities": "workspace:*",
+    "@amca/contracts": "workspace:*",
+    "@amca/effect-broker": "workspace:*",
+    "@amca/effect-sdk": "workspace:*",
+    "@amca/eval": "workspace:*",
+    "@amca/harness": "workspace:*",
+    "@amca/kernel": "workspace:*",
+    "@amca/ledger-local": "workspace:*",
+    "@amca/ledger-postgres": "workspace:*",
+    "@amca/observability": "workspace:*",
+    "@amca/provider-harness": "workspace:*",
+    "@amca/projections": "workspace:*",
+    "@amca/protocol": "workspace:*",
+    "@amca/reconciliation": "workspace:*",
+    "@amca/replay": "workspace:*",
+    "@amca/security": "workspace:*",
+    "@amca/service": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.20.0",
+    "pg": "^8.21.0"
+  }
+}

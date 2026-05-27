@@ -1,0 +1,10 @@
+.amca/
+.agent.indy/
+coverage/
+docs/research/whitepaper/
+node_modules/
+test-results/
+**/dist/
+*.log
+*.trace.json
+pnpm-lock.yaml

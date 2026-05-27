@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "types": ["node"]
+  },
+  "references": [
+    { "path": "../capabilities" },
+    { "path": "../contracts" },
+    { "path": "../harness" },
+    { "path": "../kernel" },
+    { "path": "../ledger-local" },
+    { "path": "../protocol" },
+    { "path": "../replay" },
+    { "path": "../testing" }
+  ],
+  "include": ["src/**/*.ts"]
+}

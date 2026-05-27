@@ -1,0 +1,200 @@
+{
+  "kind": "governed_harness_run_scenario",
+  "id": "harness_pr_current_state_stale_blocked",
+  "runId": "run_harness_pr_current_state_stale",
+  "profile": "standard",
+  "startedAt": "2026-05-24T10:59:00.000Z",
+  "clock": "2026-05-24T12:00:00.000Z",
+  "toolCommand": {
+    "kind": "tool_command_request",
+    "commandId": "cmd_harness_pr_current_state_stale",
+    "runId": "run_harness_pr_current_state_stale",
+    "capabilityId": "github.observe_pull_request_state",
+    "toolId": "github.observe_pull_request_state",
+    "args": {
+      "pullRequestId": "123"
+    },
+    "sideEffectClass": "read"
+  },
+  "capability": {
+    "schemaVersion": 1,
+    "capabilityId": "github.observe_pull_request_state",
+    "profile": "standard",
+    "sideEffectClass": "read",
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "receiptSchema": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "evidence": [
+      {
+        "evidenceKind": "effect_receipt",
+        "receiptType": "github.pull_request_state_checked"
+      },
+      {
+        "evidenceKind": "external_observation",
+        "observationType": "github.pull_request_state"
+      }
+    ],
+    "supportedClaims": [
+      {
+        "claimType": "current_state",
+        "predicateKind": "current_state",
+        "observationType": "github.pull_request_state"
+      }
+    ],
+    "proofRules": [
+      {
+        "ruleId": "amca.v0.proof.current_state",
+        "version": 1,
+        "claimType": "current_state",
+        "predicateKind": "current_state",
+        "description": "A current-state claim is supported by a matching fresh external observation.",
+        "evidence": [
+          {
+            "requirementId": "current_state.external_observation",
+            "evidenceKind": "external_observation",
+            "source": "claim.evidenceRefs",
+            "minimumCount": 1,
+            "resolvesTo": "external_state_observation"
+          }
+        ],
+        "match": {
+          "operator": "all",
+          "clauses": [
+            {
+              "kind": "field_equals",
+              "left": {
+                "source": "external_observation",
+                "path": "externalObservation.observationType"
+              },
+              "right": {
+                "source": "claim_predicate",
+                "path": "claim.predicate.observationType"
+              },
+              "presence": "always"
+            },
+            {
+              "kind": "field_equals",
+              "left": {
+                "source": "external_observation",
+                "path": "externalObservation.subjectType"
+              },
+              "right": {
+                "source": "claim_predicate",
+                "path": "claim.predicate.subjectType"
+              },
+              "presence": "always"
+            },
+            {
+              "kind": "field_equals",
+              "left": {
+                "source": "external_observation",
+                "path": "externalObservation.subjectId"
+              },
+              "right": {
+                "source": "claim_predicate",
+                "path": "claim.predicate.subjectId"
+              },
+              "presence": "always"
+            },
+            {
+              "kind": "fresh_within",
+              "observedAt": {
+                "source": "external_observation",
+                "path": "externalObservation.observedAt"
+              },
+              "ttlMs": {
+                "source": "claim_predicate",
+                "path": "claim.predicate.freshnessRequirementMs"
+              },
+              "evaluatedAt": "proof.generatedAt"
+            },
+            {
+              "kind": "observed_state_satisfies_predicate",
+              "observedValue": {
+                "source": "external_observation_dynamic",
+                "root": "externalObservation.observedState",
+                "pathFrom": "claim.predicate.property"
+              },
+              "operator": {
+                "source": "claim_predicate",
+                "path": "claim.predicate.operator"
+              },
+              "expectedValue": {
+                "source": "claim_predicate",
+                "path": "claim.predicate.expectedValue"
+              },
+              "supportedOperators": ["equals", "not_equals", "contains"]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "fakeAdapter": {
+    "adapterId": "adapter.github.observe_pull_request_state",
+    "receiptType": "github.pull_request_state_checked",
+    "status": "succeeded",
+    "payload": {
+      "checked": true
+    },
+    "observedAt": "2026-05-24T11:00:00.000Z",
+    "evidenceId": "ev_receipt_cmd_harness_pr_current_state_stale",
+    "sensitivity": "internal",
+    "externalStateObservation": {
+      "observationType": "github.pull_request_state",
+      "subjectType": "pull_request",
+      "subjectId": "123",
+      "observedState": {
+        "state": "open"
+      },
+      "observedAt": "2026-05-24T11:00:00.000Z",
+      "expiresAt": "2026-05-24T11:01:00.000Z",
+      "evidenceId": "ev_obs_cmd_harness_pr_current_state_stale",
+      "sensitivity": "internal"
+    }
+  },
+  "finalCandidate": {
+    "kind": "final_candidate",
+    "candidateId": "candidate_run_harness_pr_current_state_stale",
+    "runId": "run_harness_pr_current_state_stale",
+    "claims": [
+      {
+        "claimId": "claim_run_harness_pr_current_state_stale",
+        "type": "current_state",
+        "statement": "Pull request 123 is currently open.",
+        "predicate": {
+          "kind": "current_state",
+          "subjectType": "pull_request",
+          "subjectId": "123",
+          "property": "state",
+          "operator": "equals",
+          "expectedValue": "open",
+          "observationType": "github.pull_request_state",
+          "freshnessRequirementMs": 60000
+        },
+        "evidenceRefs": [
+          {
+            "evidenceId": "ev_obs_cmd_harness_pr_current_state_stale",
+            "kind": "external_observation",
+            "sourceEventId": "evt_cmd_harness_pr_current_state_stale_external_state_observed",
+            "hash": "sha256:f84509a77aa28abf2c48ebbbeeaf7e2ea3838bf33dd41a4d4ebcd6235a9a2684",
+            "observedAt": "2026-05-24T11:00:00.000Z",
+            "sensitivity": "internal"
+          }
+        ],
+        "criticality": "medium"
+      }
+    ],
+    "narrativeDraft": "Pull request 123 is currently open."
+  },
+  "expected": {
+    "releaseStatus": "blocked",
+    "mismatchTypes": ["stale_external_state"],
+    "approvedClaimIds": []
+  }
+}

@@ -1,0 +1,488 @@
+{
+  "id": "tests-passed-released",
+  "title": "Tests passed claim released with receipt evidence",
+  "case": "positive",
+  "profile": "standard",
+  "description": "A final candidate claims tests passed and references a succeeded test_run receipt.",
+  "runtimeScope": {
+    "requiresRuntimeBehavior": false,
+    "implementsProofBehavior": false,
+    "implementsKernelBehavior": false,
+    "implementsCliBehavior": false
+  },
+  "given": {
+    "toolCommandRequest": {
+      "kind": "tool_command_request",
+      "commandId": "cmd_tests_passed_released",
+      "runId": "run_tests_passed_released",
+      "capabilityId": "test.runner",
+      "toolId": "pnpm.test",
+      "args": {
+        "command": "pnpm test",
+        "testSuiteId": "unit"
+      },
+      "sideEffectClass": "compute",
+      "idempotencyKey": "idem_tests_passed_released"
+    },
+    "effectRequest": {
+      "effectId": "effect_tests_passed_released",
+      "commandId": "cmd_tests_passed_released",
+      "runId": "run_tests_passed_released",
+      "capabilityId": "test.runner",
+      "toolId": "pnpm.test",
+      "args": {
+        "command": "pnpm test",
+        "testSuiteId": "unit"
+      },
+      "sideEffectClass": "compute",
+      "requestedAt": "2026-05-24T18:05:01.000Z",
+      "idempotencyKey": "idem_tests_passed_released"
+    },
+    "effectReceipt": {
+      "receiptId": "receipt_tests_passed_released",
+      "effectId": "effect_tests_passed_released",
+      "runId": "run_tests_passed_released",
+      "capabilityId": "test.runner",
+      "receiptType": "test_run",
+      "status": "succeeded",
+      "payload": {
+        "testSuiteId": "unit",
+        "result": "passed",
+        "passed": 42,
+        "failed": 0
+      },
+      "payloadHash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+      "evidence": [
+        {
+          "evidenceId": "ev_tests_passed_released_receipt",
+          "kind": "effect_receipt",
+          "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+          "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+          "observedAt": "2026-05-24T18:05:02.000Z",
+          "sensitivity": "internal",
+          "artifactUri": "artifact://amca/tests/tests-passed-released",
+          "metadata": {
+            "testSuiteId": "unit"
+          }
+        }
+      ],
+      "observedAt": "2026-05-24T18:05:02.000Z",
+      "externalRef": "artifact://amca/tests/tests-passed-released/results.json"
+    },
+    "finalCandidate": {
+      "kind": "final_candidate",
+      "candidateId": "candidate_tests_passed_released",
+      "runId": "run_tests_passed_released",
+      "claims": [
+        {
+          "claimId": "claim_tests_passed_released",
+          "type": "test_result",
+          "statement": "The unit test suite passed.",
+          "predicate": {
+            "kind": "test_result",
+            "capabilityId": "test.runner",
+            "expectedStatus": "passed",
+            "requiredReceiptType": "test_run",
+            "testSuiteId": "unit"
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_tests_passed_released_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+              "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+              "observedAt": "2026-05-24T18:05:02.000Z",
+              "sensitivity": "internal",
+              "artifactUri": "artifact://amca/tests/tests-passed-released",
+              "metadata": {
+                "testSuiteId": "unit"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ],
+      "narrativeDraft": "The unit test suite passed."
+    },
+    "runEvents": [
+      {
+        "eventId": "evt_tests_passed_released_run_started",
+        "runId": "run_tests_passed_released",
+        "sequence": 1,
+        "type": "RunStarted",
+        "payload": {
+          "runId": "run_tests_passed_released",
+          "profile": "standard",
+          "metadata": {
+            "scenarioId": "tests-passed-released"
+          }
+        },
+        "payloadHash": "sha256:3edf4e6fdc0b8d190e51662ea0f1badac294cb051e707041d3fdaf933f12d911",
+        "causationId": null,
+        "correlationId": "corr_tests_passed_released",
+        "occurredAt": "2026-05-24T18:05:00.000Z"
+      },
+      {
+        "eventId": "evt_tests_passed_released_tool_proposed",
+        "runId": "run_tests_passed_released",
+        "sequence": 2,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "tool_command_request",
+            "commandId": "cmd_tests_passed_released",
+            "runId": "run_tests_passed_released",
+            "capabilityId": "test.runner",
+            "toolId": "pnpm.test",
+            "args": {
+              "command": "pnpm test",
+              "testSuiteId": "unit"
+            },
+            "sideEffectClass": "compute",
+            "idempotencyKey": "idem_tests_passed_released"
+          }
+        },
+        "payloadHash": "sha256:e5829aedc66d87f6d09355ea80e08f87e3334fdf4a79f3e59c42ca3d762239d7",
+        "causationId": "evt_tests_passed_released_run_started",
+        "correlationId": "corr_tests_passed_released",
+        "occurredAt": "2026-05-24T18:05:00.500Z"
+      },
+      {
+        "eventId": "evt_tests_passed_released_effect_requested",
+        "runId": "run_tests_passed_released",
+        "sequence": 3,
+        "type": "EffectRequested",
+        "payload": {
+          "effectRequest": {
+            "effectId": "effect_tests_passed_released",
+            "commandId": "cmd_tests_passed_released",
+            "runId": "run_tests_passed_released",
+            "capabilityId": "test.runner",
+            "toolId": "pnpm.test",
+            "args": {
+              "command": "pnpm test",
+              "testSuiteId": "unit"
+            },
+            "sideEffectClass": "compute",
+            "requestedAt": "2026-05-24T18:05:01.000Z",
+            "idempotencyKey": "idem_tests_passed_released"
+          }
+        },
+        "payloadHash": "sha256:cf970d1a0bb0eacaf5135f504263f54130ff973c0daa75d32660d726e3df086b",
+        "causationId": "evt_tests_passed_released_tool_proposed",
+        "correlationId": "corr_tests_passed_released",
+        "occurredAt": "2026-05-24T18:05:01.000Z"
+      },
+      {
+        "eventId": "evt_tests_passed_released_receipt_recorded",
+        "runId": "run_tests_passed_released",
+        "sequence": 4,
+        "type": "EffectReceiptRecorded",
+        "payload": {
+          "receipt": {
+            "receiptId": "receipt_tests_passed_released",
+            "effectId": "effect_tests_passed_released",
+            "runId": "run_tests_passed_released",
+            "capabilityId": "test.runner",
+            "receiptType": "test_run",
+            "status": "succeeded",
+            "payload": {
+              "testSuiteId": "unit",
+              "result": "passed",
+              "passed": 42,
+              "failed": 0
+            },
+            "payloadHash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+            "evidence": [
+              {
+                "evidenceId": "ev_tests_passed_released_receipt",
+                "kind": "effect_receipt",
+                "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+                "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                "observedAt": "2026-05-24T18:05:02.000Z",
+                "sensitivity": "internal",
+                "artifactUri": "artifact://amca/tests/tests-passed-released",
+                "metadata": {
+                  "testSuiteId": "unit"
+                }
+              }
+            ],
+            "observedAt": "2026-05-24T18:05:02.000Z",
+            "externalRef": "artifact://amca/tests/tests-passed-released/results.json"
+          }
+        },
+        "payloadHash": "sha256:6681a7ef168aac2871c1e29eae8ce9adf52205e3a05d816184690fc562dab8f2",
+        "causationId": "evt_tests_passed_released_effect_requested",
+        "correlationId": "corr_tests_passed_released",
+        "occurredAt": "2026-05-24T18:05:02.000Z"
+      },
+      {
+        "eventId": "evt_tests_passed_released_final_proposed",
+        "runId": "run_tests_passed_released",
+        "sequence": 5,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_tests_passed_released",
+            "runId": "run_tests_passed_released",
+            "claims": [
+              {
+                "claimId": "claim_tests_passed_released",
+                "type": "test_result",
+                "statement": "The unit test suite passed.",
+                "predicate": {
+                  "kind": "test_result",
+                  "capabilityId": "test.runner",
+                  "expectedStatus": "passed",
+                  "requiredReceiptType": "test_run",
+                  "testSuiteId": "unit"
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_tests_passed_released_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+                    "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                    "observedAt": "2026-05-24T18:05:02.000Z",
+                    "sensitivity": "internal",
+                    "artifactUri": "artifact://amca/tests/tests-passed-released",
+                    "metadata": {
+                      "testSuiteId": "unit"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "The unit test suite passed."
+          }
+        },
+        "payloadHash": "sha256:f4d85b7667e2517041095ba8ac7d6a474ddecaaf279ce2f82d278d6a2643e4c0",
+        "causationId": "evt_tests_passed_released_receipt_recorded",
+        "correlationId": "corr_tests_passed_released",
+        "occurredAt": "2026-05-24T18:05:02.500Z"
+      }
+    ]
+  },
+  "expected": {
+    "proof": {
+      "proofId": "proof_tests_passed_released",
+      "runId": "run_tests_passed_released",
+      "candidateId": "candidate_tests_passed_released",
+      "generatedAt": "2026-05-24T18:05:03.000Z",
+      "verdict": "pass",
+      "claims": [
+        {
+          "claimId": "claim_tests_passed_released",
+          "supported": true,
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_tests_passed_released_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+              "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+              "observedAt": "2026-05-24T18:05:02.000Z",
+              "sensitivity": "internal",
+              "artifactUri": "artifact://amca/tests/tests-passed-released",
+              "metadata": {
+                "testSuiteId": "unit"
+              }
+            }
+          ],
+          "mismatchIds": []
+        }
+      ],
+      "approvedClaimIds": ["claim_tests_passed_released"],
+      "rejectedClaimIds": [],
+      "blockingMismatches": [],
+      "evaluatedClaims": [
+        {
+          "claimId": "claim_tests_passed_released",
+          "type": "test_result",
+          "statement": "The unit test suite passed.",
+          "predicate": {
+            "kind": "test_result",
+            "capabilityId": "test.runner",
+            "expectedStatus": "passed",
+            "requiredReceiptType": "test_run",
+            "testSuiteId": "unit"
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_tests_passed_released_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+              "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+              "observedAt": "2026-05-24T18:05:02.000Z",
+              "sensitivity": "internal",
+              "artifactUri": "artifact://amca/tests/tests-passed-released",
+              "metadata": {
+                "testSuiteId": "unit"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ]
+    },
+    "mismatches": [],
+    "releaseDecision": {
+      "status": "released",
+      "runId": "run_tests_passed_released",
+      "proofId": "proof_tests_passed_released",
+      "approvedClaimIds": ["claim_tests_passed_released"],
+      "blockingMismatchIds": [],
+      "finalMessage": "Test suite unit passed."
+    },
+    "emittedEvents": [
+      {
+        "eventId": "evt_tests_passed_released_proof_generated",
+        "runId": "run_tests_passed_released",
+        "sequence": 6,
+        "type": "ProofGenerated",
+        "payload": {
+          "proof": {
+            "proofId": "proof_tests_passed_released",
+            "runId": "run_tests_passed_released",
+            "candidateId": "candidate_tests_passed_released",
+            "generatedAt": "2026-05-24T18:05:03.000Z",
+            "verdict": "pass",
+            "claims": [
+              {
+                "claimId": "claim_tests_passed_released",
+                "supported": true,
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_tests_passed_released_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+                    "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                    "observedAt": "2026-05-24T18:05:02.000Z",
+                    "sensitivity": "internal",
+                    "artifactUri": "artifact://amca/tests/tests-passed-released",
+                    "metadata": {
+                      "testSuiteId": "unit"
+                    }
+                  }
+                ],
+                "mismatchIds": []
+              }
+            ],
+            "approvedClaimIds": ["claim_tests_passed_released"],
+            "rejectedClaimIds": [],
+            "blockingMismatches": [],
+            "evaluatedClaims": [
+              {
+                "claimId": "claim_tests_passed_released",
+                "type": "test_result",
+                "statement": "The unit test suite passed.",
+                "predicate": {
+                  "kind": "test_result",
+                  "capabilityId": "test.runner",
+                  "expectedStatus": "passed",
+                  "requiredReceiptType": "test_run",
+                  "testSuiteId": "unit"
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_tests_passed_released_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+                    "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                    "observedAt": "2026-05-24T18:05:02.000Z",
+                    "sensitivity": "internal",
+                    "artifactUri": "artifact://amca/tests/tests-passed-released",
+                    "metadata": {
+                      "testSuiteId": "unit"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ]
+          }
+        },
+        "payloadHash": "sha256:d2e24cefec31cf02f45713335d8e416cbe96271d3889ecaa40aa4ffe01ee3b09",
+        "causationId": "evt_tests_passed_released_final_proposed",
+        "correlationId": "corr_tests_passed_released",
+        "occurredAt": "2026-05-24T18:05:03.000Z"
+      },
+      {
+        "eventId": "evt_tests_passed_released_release_decided",
+        "runId": "run_tests_passed_released",
+        "sequence": 7,
+        "type": "ReleaseDecided",
+        "payload": {
+          "decision": {
+            "status": "released",
+            "runId": "run_tests_passed_released",
+            "proofId": "proof_tests_passed_released",
+            "approvedClaimIds": ["claim_tests_passed_released"],
+            "blockingMismatchIds": [],
+            "finalMessage": "Test suite unit passed."
+          }
+        },
+        "payloadHash": "sha256:5d4dfece09310f5be1b559bd6dcb929d86483be9ce7bc94c3f71a7ae5c5aa8bb",
+        "causationId": "evt_tests_passed_released_proof_generated",
+        "correlationId": "corr_tests_passed_released",
+        "occurredAt": "2026-05-24T18:05:03.100Z"
+      },
+      {
+        "eventId": "evt_tests_passed_released_final_released",
+        "runId": "run_tests_passed_released",
+        "sequence": 8,
+        "type": "FinalReleased",
+        "payload": {
+          "decision": {
+            "status": "released",
+            "runId": "run_tests_passed_released",
+            "proofId": "proof_tests_passed_released",
+            "approvedClaimIds": ["claim_tests_passed_released"],
+            "blockingMismatchIds": [],
+            "finalMessage": "Test suite unit passed."
+          },
+          "candidate": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_tests_passed_released",
+            "runId": "run_tests_passed_released",
+            "claims": [
+              {
+                "claimId": "claim_tests_passed_released",
+                "type": "test_result",
+                "statement": "The unit test suite passed.",
+                "predicate": {
+                  "kind": "test_result",
+                  "capabilityId": "test.runner",
+                  "expectedStatus": "passed",
+                  "requiredReceiptType": "test_run",
+                  "testSuiteId": "unit"
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_tests_passed_released_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_tests_passed_released_receipt_recorded",
+                    "hash": "sha256:3950821da56952d3700fae082acfae718d40c868cfc4983eafad23974c678a29",
+                    "observedAt": "2026-05-24T18:05:02.000Z",
+                    "sensitivity": "internal",
+                    "artifactUri": "artifact://amca/tests/tests-passed-released",
+                    "metadata": {
+                      "testSuiteId": "unit"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "The unit test suite passed."
+          }
+        },
+        "payloadHash": "sha256:660e2553093401b34df5b61de49908b97439830fcdcb1467da456e7ff90d2e2b",
+        "causationId": "evt_tests_passed_released_release_decided",
+        "correlationId": "corr_tests_passed_released",
+        "occurredAt": "2026-05-24T18:05:03.200Z"
+      }
+    ]
+  }
+}

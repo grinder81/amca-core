@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "kind": "amca_domain_integration_grid",
+  "runtimeImplemented": false,
+  "coreModificationRequired": false,
+  "domains": [
+    {
+      "domainId": "coding",
+      "capabilityId": "coding.static_analysis_checks",
+      "supportedScenario": "domain_grid_coding_supported",
+      "blockedScenario": "domain_grid_coding_blocked"
+    },
+    {
+      "domainId": "trading_analysis",
+      "capabilityId": "trading.analysis_checks",
+      "supportedScenario": "domain_grid_trading_analysis_supported",
+      "blockedScenario": "domain_grid_trading_analysis_blocked"
+    },
+    {
+      "domainId": "genomics_dna_qc",
+      "capabilityId": "genomics.dna_qc_checks",
+      "supportedScenario": "domain_grid_genomics_dna_qc_supported",
+      "blockedScenario": "domain_grid_genomics_dna_qc_blocked"
+    },
+    {
+      "domainId": "weather_analysis",
+      "capabilityId": "weather.analysis_checks",
+      "supportedScenario": "domain_grid_weather_analysis_supported",
+      "blockedScenario": "domain_grid_weather_analysis_blocked"
+    }
+  ]
+}

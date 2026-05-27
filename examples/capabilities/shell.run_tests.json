@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "capabilityId": "shell.run_tests",
+  "profile": "standard",
+  "sideEffectClass": "compute",
+  "description": "Static contract for a governed test-run capability. This manifest declares schemas and proof requirements only; it does not execute a shell command.",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "amca:capability:shell.run_tests:input:v0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["testSuiteId", "command"],
+    "properties": {
+      "testSuiteId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "command": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "cwd": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "receiptSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "amca:capability:shell.run_tests:receipt:v0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["result", "testSuiteId", "exitCode", "completedAt"],
+    "properties": {
+      "result": {
+        "enum": ["passed", "failed"]
+      },
+      "testSuiteId": {
+        "type": "string",
+        "minLength": 1
+      },
+      "exitCode": {
+        "type": "integer"
+      },
+      "completedAt": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  },
+  "evidence": [
+    {
+      "evidenceKind": "effect_receipt",
+      "receiptType": "test_run",
+      "description": "The test_run receipt admitted by EffectReceiptRecorded."
+    }
+  ],
+  "supportedClaims": [
+    {
+      "claimType": "test_result",
+      "predicateKind": "test_result",
+      "requiredReceiptType": "test_run",
+      "expectedStatuses": ["passed", "failed"]
+    }
+  ],
+  "proofRules": [
+    {
+      "ruleId": "amca.v0.proof.test_result",
+      "version": 1,
+      "claimType": "test_result",
+      "predicateKind": "test_result",
+      "description": "A test-result claim is supported by a matching successful test-run receipt.",
+      "evidence": [
+        {
+          "requirementId": "test_result.effect_receipt",
+          "evidenceKind": "effect_receipt",
+          "source": "claim.evidenceRefs",
+          "minimumCount": 1,
+          "resolvesTo": "effect_receipt"
+        }
+      ],
+      "match": {
+        "operator": "all",
+        "clauses": [
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.receiptType"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.requiredReceiptType"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.status"
+            },
+            "right": {
+              "source": "literal",
+              "value": "succeeded"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.capabilityId"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.capabilityId"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.payload.result"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.expectedStatus"
+            },
+            "presence": "always"
+          },
+          {
+            "kind": "field_equals",
+            "left": {
+              "source": "effect_receipt",
+              "path": "effectReceipt.payload.testSuiteId"
+            },
+            "right": {
+              "source": "claim_predicate",
+              "path": "claim.predicate.testSuiteId"
+            },
+            "presence": "when_claim_field_present"
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "contractOnly": true,
+    "runtimeImplemented": false
+  }
+}

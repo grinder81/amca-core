@@ -1,0 +1,23 @@
+{
+  "name": "@amca/ledger-postgres",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Live-integration certified Postgres semantic ledger adapter for AMCA; not durable-production certified.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "vitest run --root ../.. packages/ledger-postgres/src"
+  },
+  "dependencies": {
+    "@amca/contracts": "workspace:*",
+    "@amca/ledger": "workspace:*",
+    "@amca/protocol": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.20.0",
+    "pg": "^8.21.0"
+  }
+}

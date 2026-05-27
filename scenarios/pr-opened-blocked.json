@@ -1,0 +1,534 @@
+{
+  "id": "pr-opened-blocked",
+  "title": "Pull request opened claim blocked with failed receipt",
+  "case": "negative",
+  "profile": "standard",
+  "description": "A final candidate claims a pull request was opened, but the matching receipt is failed.",
+  "runtimeScope": {
+    "requiresRuntimeBehavior": false,
+    "implementsProofBehavior": false,
+    "implementsKernelBehavior": false,
+    "implementsCliBehavior": false
+  },
+  "given": {
+    "toolCommandRequest": {
+      "kind": "tool_command_request",
+      "commandId": "cmd_pr_opened_blocked",
+      "runId": "run_pr_opened_blocked",
+      "capabilityId": "vcs.pull_request.open",
+      "toolId": "vcs.openPullRequest",
+      "args": {
+        "repository": "amca",
+        "branch": "phase/testing-fixtures",
+        "targetBranch": "main",
+        "title": "AMCA testing fixtures"
+      },
+      "sideEffectClass": "idempotent_write",
+      "idempotencyKey": "idem_pr_opened_blocked"
+    },
+    "effectRequest": {
+      "effectId": "effect_pr_opened_blocked",
+      "commandId": "cmd_pr_opened_blocked",
+      "runId": "run_pr_opened_blocked",
+      "capabilityId": "vcs.pull_request.open",
+      "toolId": "vcs.openPullRequest",
+      "args": {
+        "repository": "amca",
+        "branch": "phase/testing-fixtures",
+        "targetBranch": "main",
+        "title": "AMCA testing fixtures"
+      },
+      "sideEffectClass": "idempotent_write",
+      "requestedAt": "2026-05-24T18:10:01.000Z",
+      "idempotencyKey": "idem_pr_opened_blocked"
+    },
+    "effectReceipt": {
+      "receiptId": "receipt_pr_opened_blocked",
+      "effectId": "effect_pr_opened_blocked",
+      "runId": "run_pr_opened_blocked",
+      "capabilityId": "vcs.pull_request.open",
+      "receiptType": "pull_request_opened",
+      "status": "failed",
+      "payload": {
+        "actionVerb": "opened",
+        "subjectType": "agent_run",
+        "subjectId": "run_pr_opened_blocked",
+        "targetType": "pull_request",
+        "targetId": "pr-214",
+        "status": "failed",
+        "reason": "remote_rejected"
+      },
+      "payloadHash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+      "evidence": [
+        {
+          "evidenceId": "ev_pr_opened_blocked_receipt",
+          "kind": "effect_receipt",
+          "sourceEventId": "evt_pr_opened_blocked_receipt_recorded",
+          "hash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+          "observedAt": "2026-05-24T18:10:02.000Z",
+          "sensitivity": "internal",
+          "metadata": {
+            "targetId": "pr-214"
+          }
+        }
+      ],
+      "observedAt": "2026-05-24T18:10:02.000Z",
+      "externalRef": "vcs://amca/pull-requests/pr-214"
+    },
+    "finalCandidate": {
+      "kind": "final_candidate",
+      "candidateId": "candidate_pr_opened_blocked",
+      "runId": "run_pr_opened_blocked",
+      "claims": [
+        {
+          "claimId": "claim_pr_opened_blocked",
+          "type": "historical_action",
+          "statement": "A pull request was opened.",
+          "predicate": {
+            "kind": "historical_action",
+            "actionVerb": "opened",
+            "subjectType": "agent_run",
+            "subjectId": "run_pr_opened_blocked",
+            "targetType": "pull_request",
+            "targetId": "pr-214",
+            "capabilityId": "vcs.pull_request.open",
+            "requiredReceiptType": "pull_request_opened"
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_opened_blocked_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_pr_opened_blocked_receipt_recorded",
+              "hash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+              "observedAt": "2026-05-24T18:10:02.000Z",
+              "sensitivity": "internal",
+              "metadata": {
+                "targetId": "pr-214"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ],
+      "narrativeDraft": "A pull request was opened."
+    },
+    "runEvents": [
+      {
+        "eventId": "evt_pr_opened_blocked_run_started",
+        "runId": "run_pr_opened_blocked",
+        "sequence": 1,
+        "type": "RunStarted",
+        "payload": {
+          "runId": "run_pr_opened_blocked",
+          "profile": "standard",
+          "metadata": {
+            "scenarioId": "pr-opened-blocked"
+          }
+        },
+        "payloadHash": "sha256:96a5fe6f78894a51bd910e6990b6e0d3df81e709dd05b8e6ef8d2f40752a16f0",
+        "causationId": null,
+        "correlationId": "corr_pr_opened_blocked",
+        "occurredAt": "2026-05-24T18:10:00.000Z"
+      },
+      {
+        "eventId": "evt_pr_opened_blocked_tool_proposed",
+        "runId": "run_pr_opened_blocked",
+        "sequence": 2,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "tool_command_request",
+            "commandId": "cmd_pr_opened_blocked",
+            "runId": "run_pr_opened_blocked",
+            "capabilityId": "vcs.pull_request.open",
+            "toolId": "vcs.openPullRequest",
+            "args": {
+              "repository": "amca",
+              "branch": "phase/testing-fixtures",
+              "targetBranch": "main",
+              "title": "AMCA testing fixtures"
+            },
+            "sideEffectClass": "idempotent_write",
+            "idempotencyKey": "idem_pr_opened_blocked"
+          }
+        },
+        "payloadHash": "sha256:f048ab13d83d8a7a589bbe860989a39df079df5dd493bec77453ad76260d5c17",
+        "causationId": "evt_pr_opened_blocked_run_started",
+        "correlationId": "corr_pr_opened_blocked",
+        "occurredAt": "2026-05-24T18:10:00.500Z"
+      },
+      {
+        "eventId": "evt_pr_opened_blocked_effect_requested",
+        "runId": "run_pr_opened_blocked",
+        "sequence": 3,
+        "type": "EffectRequested",
+        "payload": {
+          "effectRequest": {
+            "effectId": "effect_pr_opened_blocked",
+            "commandId": "cmd_pr_opened_blocked",
+            "runId": "run_pr_opened_blocked",
+            "capabilityId": "vcs.pull_request.open",
+            "toolId": "vcs.openPullRequest",
+            "args": {
+              "repository": "amca",
+              "branch": "phase/testing-fixtures",
+              "targetBranch": "main",
+              "title": "AMCA testing fixtures"
+            },
+            "sideEffectClass": "idempotent_write",
+            "requestedAt": "2026-05-24T18:10:01.000Z",
+            "idempotencyKey": "idem_pr_opened_blocked"
+          }
+        },
+        "payloadHash": "sha256:1e3366a20445c03c6625bf3497df93ae33ab940d414efd3aa13bdb54c700b867",
+        "causationId": "evt_pr_opened_blocked_tool_proposed",
+        "correlationId": "corr_pr_opened_blocked",
+        "occurredAt": "2026-05-24T18:10:01.000Z"
+      },
+      {
+        "eventId": "evt_pr_opened_blocked_receipt_recorded",
+        "runId": "run_pr_opened_blocked",
+        "sequence": 4,
+        "type": "EffectReceiptRecorded",
+        "payload": {
+          "receipt": {
+            "receiptId": "receipt_pr_opened_blocked",
+            "effectId": "effect_pr_opened_blocked",
+            "runId": "run_pr_opened_blocked",
+            "capabilityId": "vcs.pull_request.open",
+            "receiptType": "pull_request_opened",
+            "status": "failed",
+            "payload": {
+              "actionVerb": "opened",
+              "subjectType": "agent_run",
+              "subjectId": "run_pr_opened_blocked",
+              "targetType": "pull_request",
+              "targetId": "pr-214",
+              "status": "failed",
+              "reason": "remote_rejected"
+            },
+            "payloadHash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+            "evidence": [
+              {
+                "evidenceId": "ev_pr_opened_blocked_receipt",
+                "kind": "effect_receipt",
+                "sourceEventId": "evt_pr_opened_blocked_receipt_recorded",
+                "hash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+                "observedAt": "2026-05-24T18:10:02.000Z",
+                "sensitivity": "internal",
+                "metadata": {
+                  "targetId": "pr-214"
+                }
+              }
+            ],
+            "observedAt": "2026-05-24T18:10:02.000Z",
+            "externalRef": "vcs://amca/pull-requests/pr-214"
+          }
+        },
+        "payloadHash": "sha256:034b14ba9bdc101c64b6e1688cada9f86f55e3a16598093d9bf818293909c589",
+        "causationId": "evt_pr_opened_blocked_effect_requested",
+        "correlationId": "corr_pr_opened_blocked",
+        "occurredAt": "2026-05-24T18:10:02.000Z"
+      },
+      {
+        "eventId": "evt_pr_opened_blocked_final_proposed",
+        "runId": "run_pr_opened_blocked",
+        "sequence": 5,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_pr_opened_blocked",
+            "runId": "run_pr_opened_blocked",
+            "claims": [
+              {
+                "claimId": "claim_pr_opened_blocked",
+                "type": "historical_action",
+                "statement": "A pull request was opened.",
+                "predicate": {
+                  "kind": "historical_action",
+                  "actionVerb": "opened",
+                  "subjectType": "agent_run",
+                  "subjectId": "run_pr_opened_blocked",
+                  "targetType": "pull_request",
+                  "targetId": "pr-214",
+                  "capabilityId": "vcs.pull_request.open",
+                  "requiredReceiptType": "pull_request_opened"
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_opened_blocked_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_pr_opened_blocked_receipt_recorded",
+                    "hash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+                    "observedAt": "2026-05-24T18:10:02.000Z",
+                    "sensitivity": "internal",
+                    "metadata": {
+                      "targetId": "pr-214"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "A pull request was opened."
+          }
+        },
+        "payloadHash": "sha256:6d3f4ff4bef2cac0b35a18651b7e23185033766d07a18ae49627e1b294d2faf1",
+        "causationId": "evt_pr_opened_blocked_receipt_recorded",
+        "correlationId": "corr_pr_opened_blocked",
+        "occurredAt": "2026-05-24T18:10:02.500Z"
+      }
+    ]
+  },
+  "expected": {
+    "proof": {
+      "proofId": "proof_pr_opened_blocked",
+      "runId": "run_pr_opened_blocked",
+      "candidateId": "candidate_pr_opened_blocked",
+      "generatedAt": "2026-05-24T18:10:03.000Z",
+      "verdict": "fail",
+      "claims": [
+        {
+          "claimId": "claim_pr_opened_blocked",
+          "supported": false,
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_opened_blocked_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_pr_opened_blocked_receipt_recorded",
+              "hash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+              "observedAt": "2026-05-24T18:10:02.000Z",
+              "sensitivity": "internal",
+              "metadata": {
+                "targetId": "pr-214"
+              }
+            }
+          ],
+          "mismatchIds": ["mismatch_pr_opened_receipt_failed"]
+        }
+      ],
+      "approvedClaimIds": [],
+      "rejectedClaimIds": ["claim_pr_opened_blocked"],
+      "blockingMismatches": [
+        {
+          "mismatchId": "mismatch_pr_opened_receipt_failed",
+          "runId": "run_pr_opened_blocked",
+          "type": "unverified_receipt",
+          "blocking": true,
+          "message": "The historical_action claim requires a succeeded pull_request_opened receipt.",
+          "claimId": "claim_pr_opened_blocked",
+          "expected": {
+            "receiptType": "pull_request_opened",
+            "status": "succeeded"
+          },
+          "actual": {
+            "receiptType": "pull_request_opened",
+            "status": "failed"
+          }
+        }
+      ],
+      "evaluatedClaims": [
+        {
+          "claimId": "claim_pr_opened_blocked",
+          "type": "historical_action",
+          "statement": "A pull request was opened.",
+          "predicate": {
+            "kind": "historical_action",
+            "actionVerb": "opened",
+            "subjectType": "agent_run",
+            "subjectId": "run_pr_opened_blocked",
+            "targetType": "pull_request",
+            "targetId": "pr-214",
+            "capabilityId": "vcs.pull_request.open",
+            "requiredReceiptType": "pull_request_opened"
+          },
+          "evidenceRefs": [
+            {
+              "evidenceId": "ev_pr_opened_blocked_receipt",
+              "kind": "effect_receipt",
+              "sourceEventId": "evt_pr_opened_blocked_receipt_recorded",
+              "hash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+              "observedAt": "2026-05-24T18:10:02.000Z",
+              "sensitivity": "internal",
+              "metadata": {
+                "targetId": "pr-214"
+              }
+            }
+          ],
+          "criticality": "high"
+        }
+      ]
+    },
+    "mismatches": [
+      {
+        "mismatchId": "mismatch_pr_opened_receipt_failed",
+        "runId": "run_pr_opened_blocked",
+        "type": "unverified_receipt",
+        "blocking": true,
+        "message": "The historical_action claim requires a succeeded pull_request_opened receipt.",
+        "claimId": "claim_pr_opened_blocked",
+        "expected": {
+          "receiptType": "pull_request_opened",
+          "status": "succeeded"
+        },
+        "actual": {
+          "receiptType": "pull_request_opened",
+          "status": "failed"
+        }
+      }
+    ],
+    "releaseDecision": {
+      "status": "blocked",
+      "runId": "run_pr_opened_blocked",
+      "proofId": "proof_pr_opened_blocked",
+      "approvedClaimIds": [],
+      "blockingMismatchIds": ["mismatch_pr_opened_receipt_failed"],
+      "repairHints": [
+        "Retry through the Effect Broker and record a succeeded receipt."
+      ]
+    },
+    "emittedEvents": [
+      {
+        "eventId": "evt_pr_opened_blocked_proof_generated",
+        "runId": "run_pr_opened_blocked",
+        "sequence": 6,
+        "type": "ProofGenerated",
+        "payload": {
+          "proof": {
+            "proofId": "proof_pr_opened_blocked",
+            "runId": "run_pr_opened_blocked",
+            "candidateId": "candidate_pr_opened_blocked",
+            "generatedAt": "2026-05-24T18:10:03.000Z",
+            "verdict": "fail",
+            "claims": [
+              {
+                "claimId": "claim_pr_opened_blocked",
+                "supported": false,
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_opened_blocked_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_pr_opened_blocked_receipt_recorded",
+                    "hash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+                    "observedAt": "2026-05-24T18:10:02.000Z",
+                    "sensitivity": "internal",
+                    "metadata": {
+                      "targetId": "pr-214"
+                    }
+                  }
+                ],
+                "mismatchIds": ["mismatch_pr_opened_receipt_failed"]
+              }
+            ],
+            "approvedClaimIds": [],
+            "rejectedClaimIds": ["claim_pr_opened_blocked"],
+            "blockingMismatches": [
+              {
+                "mismatchId": "mismatch_pr_opened_receipt_failed",
+                "runId": "run_pr_opened_blocked",
+                "type": "unverified_receipt",
+                "blocking": true,
+                "message": "The historical_action claim requires a succeeded pull_request_opened receipt.",
+                "claimId": "claim_pr_opened_blocked",
+                "expected": {
+                  "receiptType": "pull_request_opened",
+                  "status": "succeeded"
+                },
+                "actual": {
+                  "receiptType": "pull_request_opened",
+                  "status": "failed"
+                }
+              }
+            ],
+            "evaluatedClaims": [
+              {
+                "claimId": "claim_pr_opened_blocked",
+                "type": "historical_action",
+                "statement": "A pull request was opened.",
+                "predicate": {
+                  "kind": "historical_action",
+                  "actionVerb": "opened",
+                  "subjectType": "agent_run",
+                  "subjectId": "run_pr_opened_blocked",
+                  "targetType": "pull_request",
+                  "targetId": "pr-214",
+                  "capabilityId": "vcs.pull_request.open",
+                  "requiredReceiptType": "pull_request_opened"
+                },
+                "evidenceRefs": [
+                  {
+                    "evidenceId": "ev_pr_opened_blocked_receipt",
+                    "kind": "effect_receipt",
+                    "sourceEventId": "evt_pr_opened_blocked_receipt_recorded",
+                    "hash": "sha256:ddc6db2b4512123e90503639794a28f4b674a958ed9c713c3fcbbcfb165cfa3d",
+                    "observedAt": "2026-05-24T18:10:02.000Z",
+                    "sensitivity": "internal",
+                    "metadata": {
+                      "targetId": "pr-214"
+                    }
+                  }
+                ],
+                "criticality": "high"
+              }
+            ]
+          }
+        },
+        "payloadHash": "sha256:8a417138eea3179709494dd3ff4be7fb11397a8b67be4d1c3ca7ced8041e9543",
+        "causationId": "evt_pr_opened_blocked_final_proposed",
+        "correlationId": "corr_pr_opened_blocked",
+        "occurredAt": "2026-05-24T18:10:03.000Z"
+      },
+      {
+        "eventId": "evt_pr_opened_blocked_mismatch_detected",
+        "runId": "run_pr_opened_blocked",
+        "sequence": 7,
+        "type": "MismatchDetected",
+        "payload": {
+          "mismatch": {
+            "mismatchId": "mismatch_pr_opened_receipt_failed",
+            "runId": "run_pr_opened_blocked",
+            "type": "unverified_receipt",
+            "blocking": true,
+            "message": "The historical_action claim requires a succeeded pull_request_opened receipt.",
+            "claimId": "claim_pr_opened_blocked",
+            "expected": {
+              "receiptType": "pull_request_opened",
+              "status": "succeeded"
+            },
+            "actual": {
+              "receiptType": "pull_request_opened",
+              "status": "failed"
+            }
+          }
+        },
+        "payloadHash": "sha256:4339d84cb2f68220386159717b7f38e622f471a96fb32176dca8faa3439cefd6",
+        "causationId": "evt_pr_opened_blocked_proof_generated",
+        "correlationId": "corr_pr_opened_blocked",
+        "occurredAt": "2026-05-24T18:10:03.100Z"
+      },
+      {
+        "eventId": "evt_pr_opened_blocked_release_decided",
+        "runId": "run_pr_opened_blocked",
+        "sequence": 8,
+        "type": "ReleaseDecided",
+        "payload": {
+          "decision": {
+            "status": "blocked",
+            "runId": "run_pr_opened_blocked",
+            "proofId": "proof_pr_opened_blocked",
+            "approvedClaimIds": [],
+            "blockingMismatchIds": ["mismatch_pr_opened_receipt_failed"],
+            "repairHints": [
+              "Retry through the Effect Broker and record a succeeded receipt."
+            ]
+          }
+        },
+        "payloadHash": "sha256:9ffe219e402004595d12555911dc0b36c83295c4f8818f129897a43583c85704",
+        "causationId": "evt_pr_opened_blocked_proof_generated",
+        "correlationId": "corr_pr_opened_blocked",
+        "occurredAt": "2026-05-24T18:10:03.200Z"
+      }
+    ]
+  }
+}

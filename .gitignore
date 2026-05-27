@@ -1,0 +1,12 @@
+.DS_Store
+
+.amca/runs/
+.amca/tmp/
+coverage/
+**/dist/
+node_modules/
+test-results/
+*.tsbuildinfo
+*.trace.json
+*.log
+evidence/

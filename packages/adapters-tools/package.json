@@ -1,0 +1,18 @@
+{
+  "name": "@amca/adapters-tools",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false",
+    "test": "cd ../.. && vitest run packages/adapters-tools/src"
+  },
+  "dependencies": {
+    "@amca/contracts": "workspace:*",
+    "@amca/effect-sdk": "workspace:*",
+    "@amca/protocol": "workspace:*"
+  }
+}

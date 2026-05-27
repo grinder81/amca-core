@@ -1,0 +1,340 @@
+{
+  "id": "tests-passed-blocked",
+  "title": "Tests passed claim blocked without receipt evidence",
+  "case": "negative",
+  "profile": "standard",
+  "description": "A final candidate claims tests passed, but no first-class test_run receipt supports the claim.",
+  "runtimeScope": {
+    "requiresRuntimeBehavior": false,
+    "implementsProofBehavior": false,
+    "implementsKernelBehavior": false,
+    "implementsCliBehavior": false
+  },
+  "given": {
+    "toolCommandRequest": {
+      "kind": "tool_command_request",
+      "commandId": "cmd_tests_passed_blocked",
+      "runId": "run_tests_passed_blocked",
+      "capabilityId": "test.runner",
+      "toolId": "pnpm.test",
+      "args": {
+        "command": "pnpm test",
+        "testSuiteId": "unit"
+      },
+      "sideEffectClass": "compute",
+      "idempotencyKey": "idem_tests_passed_blocked"
+    },
+    "effectRequest": {
+      "effectId": "effect_tests_passed_blocked",
+      "commandId": "cmd_tests_passed_blocked",
+      "runId": "run_tests_passed_blocked",
+      "capabilityId": "test.runner",
+      "toolId": "pnpm.test",
+      "args": {
+        "command": "pnpm test",
+        "testSuiteId": "unit"
+      },
+      "sideEffectClass": "compute",
+      "requestedAt": "2026-05-24T18:00:01.000Z",
+      "idempotencyKey": "idem_tests_passed_blocked"
+    },
+    "finalCandidate": {
+      "kind": "final_candidate",
+      "candidateId": "candidate_tests_passed_blocked",
+      "runId": "run_tests_passed_blocked",
+      "claims": [
+        {
+          "claimId": "claim_tests_passed_blocked",
+          "type": "test_result",
+          "statement": "The unit test suite passed.",
+          "predicate": {
+            "kind": "test_result",
+            "capabilityId": "test.runner",
+            "expectedStatus": "passed",
+            "requiredReceiptType": "test_run",
+            "testSuiteId": "unit"
+          },
+          "evidenceRefs": [],
+          "criticality": "high"
+        }
+      ],
+      "narrativeDraft": "The unit test suite passed."
+    },
+    "runEvents": [
+      {
+        "eventId": "evt_tests_passed_blocked_run_started",
+        "runId": "run_tests_passed_blocked",
+        "sequence": 1,
+        "type": "RunStarted",
+        "payload": {
+          "runId": "run_tests_passed_blocked",
+          "profile": "standard",
+          "metadata": {
+            "scenarioId": "tests-passed-blocked"
+          }
+        },
+        "payloadHash": "sha256:7c8b2d383d243f43b268111529a8653eb2535950475576e27478e280356604a2",
+        "causationId": null,
+        "correlationId": "corr_tests_passed_blocked",
+        "occurredAt": "2026-05-24T18:00:00.000Z"
+      },
+      {
+        "eventId": "evt_tests_passed_blocked_tool_proposed",
+        "runId": "run_tests_passed_blocked",
+        "sequence": 2,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "tool_command_request",
+            "commandId": "cmd_tests_passed_blocked",
+            "runId": "run_tests_passed_blocked",
+            "capabilityId": "test.runner",
+            "toolId": "pnpm.test",
+            "args": {
+              "command": "pnpm test",
+              "testSuiteId": "unit"
+            },
+            "sideEffectClass": "compute",
+            "idempotencyKey": "idem_tests_passed_blocked"
+          }
+        },
+        "payloadHash": "sha256:74ddc5183094def60a4b461a1e311b91f4766ffae613127e0d752c6ea2276aa8",
+        "causationId": "evt_tests_passed_blocked_run_started",
+        "correlationId": "corr_tests_passed_blocked",
+        "occurredAt": "2026-05-24T18:00:00.500Z"
+      },
+      {
+        "eventId": "evt_tests_passed_blocked_effect_requested",
+        "runId": "run_tests_passed_blocked",
+        "sequence": 3,
+        "type": "EffectRequested",
+        "payload": {
+          "effectRequest": {
+            "effectId": "effect_tests_passed_blocked",
+            "commandId": "cmd_tests_passed_blocked",
+            "runId": "run_tests_passed_blocked",
+            "capabilityId": "test.runner",
+            "toolId": "pnpm.test",
+            "args": {
+              "command": "pnpm test",
+              "testSuiteId": "unit"
+            },
+            "sideEffectClass": "compute",
+            "requestedAt": "2026-05-24T18:00:01.000Z",
+            "idempotencyKey": "idem_tests_passed_blocked"
+          }
+        },
+        "payloadHash": "sha256:3063dec8dc494c5e482dd80d420ba780cc3d51116d5964c999b0ada9cec3accb",
+        "causationId": "evt_tests_passed_blocked_tool_proposed",
+        "correlationId": "corr_tests_passed_blocked",
+        "occurredAt": "2026-05-24T18:00:01.000Z"
+      },
+      {
+        "eventId": "evt_tests_passed_blocked_final_proposed",
+        "runId": "run_tests_passed_blocked",
+        "sequence": 4,
+        "type": "ProposalReceived",
+        "payload": {
+          "proposal": {
+            "kind": "final_candidate",
+            "candidateId": "candidate_tests_passed_blocked",
+            "runId": "run_tests_passed_blocked",
+            "claims": [
+              {
+                "claimId": "claim_tests_passed_blocked",
+                "type": "test_result",
+                "statement": "The unit test suite passed.",
+                "predicate": {
+                  "kind": "test_result",
+                  "capabilityId": "test.runner",
+                  "expectedStatus": "passed",
+                  "requiredReceiptType": "test_run",
+                  "testSuiteId": "unit"
+                },
+                "evidenceRefs": [],
+                "criticality": "high"
+              }
+            ],
+            "narrativeDraft": "The unit test suite passed."
+          }
+        },
+        "payloadHash": "sha256:8203c5707e3197dab92d86b56f578364e33feedd92a19c6d9985afedb182effe",
+        "causationId": "evt_tests_passed_blocked_effect_requested",
+        "correlationId": "corr_tests_passed_blocked",
+        "occurredAt": "2026-05-24T18:00:02.000Z"
+      }
+    ]
+  },
+  "expected": {
+    "proof": {
+      "proofId": "proof_tests_passed_blocked",
+      "runId": "run_tests_passed_blocked",
+      "candidateId": "candidate_tests_passed_blocked",
+      "generatedAt": "2026-05-24T18:00:03.000Z",
+      "verdict": "fail",
+      "claims": [
+        {
+          "claimId": "claim_tests_passed_blocked",
+          "supported": false,
+          "evidenceRefs": [],
+          "mismatchIds": ["mismatch_tests_passed_missing_receipt"]
+        }
+      ],
+      "approvedClaimIds": [],
+      "rejectedClaimIds": ["claim_tests_passed_blocked"],
+      "blockingMismatches": [
+        {
+          "mismatchId": "mismatch_tests_passed_missing_receipt",
+          "runId": "run_tests_passed_blocked",
+          "type": "missing_evidence",
+          "blocking": true,
+          "message": "The test_result claim has no first-class test_run receipt evidence.",
+          "claimId": "claim_tests_passed_blocked",
+          "expected": "test_run receipt with status succeeded",
+          "actual": "no evidenceRefs"
+        }
+      ],
+      "evaluatedClaims": [
+        {
+          "claimId": "claim_tests_passed_blocked",
+          "type": "test_result",
+          "statement": "The unit test suite passed.",
+          "predicate": {
+            "kind": "test_result",
+            "capabilityId": "test.runner",
+            "expectedStatus": "passed",
+            "requiredReceiptType": "test_run",
+            "testSuiteId": "unit"
+          },
+          "evidenceRefs": [],
+          "criticality": "high"
+        }
+      ]
+    },
+    "mismatches": [
+      {
+        "mismatchId": "mismatch_tests_passed_missing_receipt",
+        "runId": "run_tests_passed_blocked",
+        "type": "missing_evidence",
+        "blocking": true,
+        "message": "The test_result claim has no first-class test_run receipt evidence.",
+        "claimId": "claim_tests_passed_blocked",
+        "expected": "test_run receipt with status succeeded",
+        "actual": "no evidenceRefs"
+      }
+    ],
+    "releaseDecision": {
+      "status": "blocked",
+      "runId": "run_tests_passed_blocked",
+      "proofId": "proof_tests_passed_blocked",
+      "approvedClaimIds": [],
+      "blockingMismatchIds": ["mismatch_tests_passed_missing_receipt"],
+      "repairHints": [
+        "Record a succeeded test_run receipt before releasing the claim."
+      ]
+    },
+    "emittedEvents": [
+      {
+        "eventId": "evt_tests_passed_blocked_proof_generated",
+        "runId": "run_tests_passed_blocked",
+        "sequence": 5,
+        "type": "ProofGenerated",
+        "payload": {
+          "proof": {
+            "proofId": "proof_tests_passed_blocked",
+            "runId": "run_tests_passed_blocked",
+            "candidateId": "candidate_tests_passed_blocked",
+            "generatedAt": "2026-05-24T18:00:03.000Z",
+            "verdict": "fail",
+            "claims": [
+              {
+                "claimId": "claim_tests_passed_blocked",
+                "supported": false,
+                "evidenceRefs": [],
+                "mismatchIds": ["mismatch_tests_passed_missing_receipt"]
+              }
+            ],
+            "approvedClaimIds": [],
+            "rejectedClaimIds": ["claim_tests_passed_blocked"],
+            "blockingMismatches": [
+              {
+                "mismatchId": "mismatch_tests_passed_missing_receipt",
+                "runId": "run_tests_passed_blocked",
+                "type": "missing_evidence",
+                "blocking": true,
+                "message": "The test_result claim has no first-class test_run receipt evidence.",
+                "claimId": "claim_tests_passed_blocked",
+                "expected": "test_run receipt with status succeeded",
+                "actual": "no evidenceRefs"
+              }
+            ],
+            "evaluatedClaims": [
+              {
+                "claimId": "claim_tests_passed_blocked",
+                "type": "test_result",
+                "statement": "The unit test suite passed.",
+                "predicate": {
+                  "kind": "test_result",
+                  "capabilityId": "test.runner",
+                  "expectedStatus": "passed",
+                  "requiredReceiptType": "test_run",
+                  "testSuiteId": "unit"
+                },
+                "evidenceRefs": [],
+                "criticality": "high"
+              }
+            ]
+          }
+        },
+        "payloadHash": "sha256:5aed59af29038a4e1b9796747f5503568f22bb19d7c55d6f7d3d9a168b8896dd",
+        "causationId": "evt_tests_passed_blocked_final_proposed",
+        "correlationId": "corr_tests_passed_blocked",
+        "occurredAt": "2026-05-24T18:00:03.000Z"
+      },
+      {
+        "eventId": "evt_tests_passed_blocked_mismatch_detected",
+        "runId": "run_tests_passed_blocked",
+        "sequence": 6,
+        "type": "MismatchDetected",
+        "payload": {
+          "mismatch": {
+            "mismatchId": "mismatch_tests_passed_missing_receipt",
+            "runId": "run_tests_passed_blocked",
+            "type": "missing_evidence",
+            "blocking": true,
+            "message": "The test_result claim has no first-class test_run receipt evidence.",
+            "claimId": "claim_tests_passed_blocked",
+            "expected": "test_run receipt with status succeeded",
+            "actual": "no evidenceRefs"
+          }
+        },
+        "payloadHash": "sha256:88e51d8084f17ebdf11161a41397e588098cdb3bf47a9e62c8be8fc0e4aa1692",
+        "causationId": "evt_tests_passed_blocked_proof_generated",
+        "correlationId": "corr_tests_passed_blocked",
+        "occurredAt": "2026-05-24T18:00:03.100Z"
+      },
+      {
+        "eventId": "evt_tests_passed_blocked_release_decided",
+        "runId": "run_tests_passed_blocked",
+        "sequence": 7,
+        "type": "ReleaseDecided",
+        "payload": {
+          "decision": {
+            "status": "blocked",
+            "runId": "run_tests_passed_blocked",
+            "proofId": "proof_tests_passed_blocked",
+            "approvedClaimIds": [],
+            "blockingMismatchIds": ["mismatch_tests_passed_missing_receipt"],
+            "repairHints": [
+              "Record a succeeded test_run receipt before releasing the claim."
+            ]
+          }
+        },
+        "payloadHash": "sha256:8b098aebfc7e655c0ebb8e4fefde9117376f6d4285d795f932eb200cc8ec0dc1",
+        "causationId": "evt_tests_passed_blocked_proof_generated",
+        "correlationId": "corr_tests_passed_blocked",
+        "occurredAt": "2026-05-24T18:00:03.200Z"
+      }
+    ]
+  }
+}

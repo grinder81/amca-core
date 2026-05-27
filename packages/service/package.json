@@ -1,0 +1,21 @@
+{
+  "name": "@amca/service",
+  "version": "0.0.0",
+  "description": "In-process typed AMCA service/API boundary over harness, projection, replay, and security primitives.",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@amca/contracts": "workspace:*",
+    "@amca/harness": "workspace:*",
+    "@amca/projections": "workspace:*",
+    "@amca/protocol": "workspace:*",
+    "@amca/replay": "workspace:*",
+    "@amca/security": "workspace:*"
+  }
+}

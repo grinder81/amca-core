@@ -1,0 +1,33 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+    "types": ["node", "vitest/globals"]
+  },
+  "references": [
+    { "path": "../adapters-temporal" },
+    { "path": "../adapters-tools" },
+    { "path": "../adapters-conformance" },
+    { "path": "../adapters-langgraph" },
+    { "path": "../protocol" },
+    { "path": "../capabilities" },
+    { "path": "../effect-sdk" },
+    { "path": "../effect-broker" },
+    { "path": "../eval" },
+    { "path": "../harness" },
+    { "path": "../kernel" },
+    { "path": "../ledger-local" },
+    { "path": "../ledger-postgres" },
+    { "path": "../projections" },
+    { "path": "../reconciliation" },
+    { "path": "../security" },
+    { "path": "../service" },
+    { "path": "../replay" }
+  ],
+  "include": ["src/**/*.ts"]
+}
