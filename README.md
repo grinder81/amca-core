@@ -88,6 +88,16 @@ Run the local CLI:
 pnpm amca --help
 ```
 
+Run the no-network proof/release demo:
+
+```bash
+pnpm demo:proof-release
+```
+
+It writes timestamped local artifacts under `.amca/demo-runs/proof-release/`,
+including the event log, admitted evidence, proof, release decision, final
+release event, and blocked unsupported-claim path.
+
 Run the local provider flight recorder if you have an OpenAI-compatible local
 provider available:
 
@@ -124,6 +134,7 @@ by git.
 - [Architecture](docs/architecture.md)
 - [Visual Guide](docs/visual-guide.md)
 - [Use Cases](docs/use-cases.md)
+- [Runnable Demos](docs/runnable-demos.md)
 - [Getting Started](docs/getting-started.md)
 - [Core Concepts](docs/concepts.md)
 - [Adapters](docs/adapters.md)

@@ -1,5 +1,6 @@
 .DS_Store
 
+.amca/demo-runs/
 .amca/runs/
 .amca/tmp/
 coverage/

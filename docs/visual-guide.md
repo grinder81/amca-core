@@ -2,8 +2,15 @@
 
 This guide explains AMCA Core visually.
 
-The diagrams are conceptual architecture diagrams. For concrete executed
-records, run the local flight recorder:
+The diagrams are conceptual architecture diagrams. For concrete executed records
+that do not require a provider, network, database, or credentials, run:
+
+```bash
+pnpm demo:proof-release
+```
+
+For concrete executed records with a local OpenAI-compatible provider, run the
+local flight recorder:
 
 ```bash
 AMCA_PROVIDER_LIVE=1 \
@@ -13,7 +20,7 @@ AMCA_PROVIDER_API_KEY=<local-placeholder> \
 pnpm demo:flight-recorder
 ```
 
-The recorder writes local event/proof/release artifacts under `.amca/`.
+Both commands write local event/proof/release artifacts under `.amca/`.
 
 ## One-Screen Summary
 

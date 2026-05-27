@@ -22,6 +22,19 @@ Run the CLI:
 pnpm amca --help
 ```
 
+Run the local proof/release demo. It does not require a provider, network,
+database, or credentials:
+
+```bash
+pnpm demo:proof-release
+```
+
+The demo writes local ignored artifacts under:
+
+```text
+.amca/demo-runs/proof-release/
+```
+
 Run the local provider recorder with an OpenAI-compatible local provider:
 
 ```bash
@@ -37,3 +50,5 @@ The recorder writes local ignored artifacts under:
 ```text
 .amca/demo-runs/flight-recorder/
 ```
+
+See [Runnable Demos](runnable-demos.md) for the exact files to inspect.
