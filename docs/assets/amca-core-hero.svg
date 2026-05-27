@@ -1,0 +1,68 @@
+<svg width="1280" height="460" viewBox="0 0 1280 460" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AMCA Core authority flow</title>
+  <desc id="desc">A visual summary of the AMCA proposal, evidence, proof, and release flow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="460" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="0.5" stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#312E81"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="170" y1="0" x2="1120" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#67E8F9"/>
+      <stop offset="0.5" stop-color="#A7F3D0"/>
+      <stop offset="1" stop-color="#FDE68A"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="460" rx="26" fill="url(#bg)"/>
+  <path d="M0 360C140 316 257 332 396 363C534 394 660 423 821 374C981 325 1091 212 1280 250V460H0V360Z" fill="#020617" opacity="0.32"/>
+  <path d="M64 80H1216" stroke="white" stroke-opacity="0.08"/>
+  <path d="M64 380H1216" stroke="white" stroke-opacity="0.08"/>
+  <path d="M140 36V424" stroke="white" stroke-opacity="0.06"/>
+  <path d="M1140 36V424" stroke="white" stroke-opacity="0.06"/>
+
+  <text x="88" y="102" fill="white" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="800">AMCA Core</text>
+  <text x="90" y="142" fill="#CCFBF1" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="600">Agentic Mesh Control Architecture</text>
+  <text x="90" y="184" fill="#E0F2FE" font-family="Inter, Arial, sans-serif" font-size="24">Proof-gated semantic governance for agentic systems.</text>
+  <text x="90" y="220" fill="#CBD5E1" font-family="Inter, Arial, sans-serif" font-size="18">Agents propose. AMCA admits evidence, verifies claims, and releases only supported output.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="92" y="274" width="176" height="74" rx="16" fill="#F8FAFC"/>
+    <text x="180" y="305" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">Proposal</text>
+    <text x="180" y="329" text-anchor="middle" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13">provider / agent</text>
+
+    <rect x="326" y="274" width="176" height="74" rx="16" fill="#F8FAFC"/>
+    <text x="414" y="305" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">Governed Effect</text>
+    <text x="414" y="329" text-anchor="middle" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13">broker controlled</text>
+
+    <rect x="560" y="274" width="176" height="74" rx="16" fill="#F8FAFC"/>
+    <text x="648" y="305" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">EvidenceRef</text>
+    <text x="648" y="329" text-anchor="middle" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13">event anchored</text>
+
+    <rect x="794" y="274" width="176" height="74" rx="16" fill="#F8FAFC"/>
+    <text x="882" y="305" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">Proof</text>
+    <text x="882" y="329" text-anchor="middle" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13">deterministic</text>
+
+    <rect x="1028" y="274" width="176" height="74" rx="16" fill="#F8FAFC"/>
+    <text x="1116" y="305" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">Release Gate</text>
+    <text x="1116" y="329" text-anchor="middle" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="13">released or blocked</text>
+  </g>
+
+  <path d="M278 311H316" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M306 300L318 311L306 322" stroke="#A7F3D0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M512 311H550" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M540 300L552 311L540 322" stroke="#A7F3D0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M746 311H784" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M774 300L786 311L774 322" stroke="#A7F3D0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M980 311H1018" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1008 300L1020 311L1008 322" stroke="#FDE68A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="878" y="92" width="304" height="118" rx="18" fill="#020617" fill-opacity="0.58" stroke="#A7F3D0" stroke-opacity="0.42"/>
+  <text x="910" y="126" fill="#A7F3D0" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="800">Without admitted evidence</text>
+  <text x="910" y="156" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="15">proof: fail</text>
+  <text x="910" y="180" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="15">release: blocked</text>
+  <text x="910" y="204" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="15">final output: not published</text>
+</svg>

@@ -1,7 +1,28 @@
-# AMCA Core
+<p align="center">
+  <img src="docs/assets/amca-core-hero.svg" alt="AMCA Core authority flow" width="100%" />
+</p>
 
-AMCA Core, Agentic Mesh Control Architecture, is a proof-gated semantic
-governance kernel for agentic systems.
+<h1 align="center">AMCA Core</h1>
+
+<p align="center">
+  <strong>Agentic Mesh Control Architecture</strong><br />
+  A proof-gated semantic governance kernel for agentic systems.
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue" /></a>
+  <img alt="Status: alpha" src="https://img.shields.io/badge/status-alpha-orange" />
+  <img alt="Node >= 22.17" src="https://img.shields.io/badge/node-%3E%3D22.17-0f766e" />
+  <img alt="Package manager: pnpm" src="https://img.shields.io/badge/package%20manager-pnpm-f59e0b" />
+</p>
+
+<p align="center">
+  <a href="#run-it-in-two-minutes">Quick Start</a> ·
+  <a href="docs/runnable-demos.md">Runnable Demos</a> ·
+  <a href="docs/visual-guide.md">Visual Guide</a> ·
+  <a href="docs/architecture.md">Architecture</a> ·
+  <a href="docs/threat-model.md">Threat Model</a>
+</p>
 
 Agent SDKs help agents act. AMCA governs what agents are allowed to claim.
 
@@ -9,47 +30,162 @@ AMCA turns provider, framework, tool, and adapter output into governed
 proposals, admits evidence through typed events, verifies structured claims
 deterministically, and releases only supported outputs.
 
-## Why AMCA
-
-Modern agent frameworks make it easy to build systems that can call tools,
-coordinate workflows, and produce fluent answers. That is useful, but it leaves
-an authority problem:
-
-```text
-Did the action really happen?
-Was the evidence admitted?
-Does it belong to this run?
-Is it fresh enough for the claim?
-Can the final answer be proven before release?
-```
-
-AMCA answers those questions with an explicit governance path:
-
 ```text
 provider or agent proposes
   -> AMCA validates
   -> broker governs effects
-  -> ledger anchors accepted events
+  -> kernel admits receipts and evidence
   -> proof engine verifies structured claims
   -> release gate publishes only supported outputs
 ```
 
-## Core Concepts
+## The Problem
 
-- **Proposal-only agents**: providers and agent runtimes can propose work or
-  final claims, but they do not become proof, receipt, mutation, or release
-  authority.
-- **Evidence admission**: adapter/tool output is a candidate until AMCA records
-  an accepted event and produces an admitted evidence reference.
-- **Deterministic proof**: durable claims are checked against structured
-  predicates and admitted evidence, not provider prose.
-- **Release gate**: final output is published only after proof and release
-  decision events.
-- **Substrate containment**: LangGraph, Temporal, provider traces, telemetry,
-  replay output, eval output, and framework state are not proof by themselves.
-- **Anti-mission tests**: tests assert that unsupported claims, forged evidence,
-  stale observations, direct receipts, trace-as-proof, and authority smuggling
-  fail closed.
+Modern agent frameworks make it easy to call tools, coordinate workflows, and
+produce fluent answers. That still leaves an authority problem:
+
+```text
+Did the action really happen?
+Was the result admitted as evidence?
+Does the evidence belong to this run?
+Is it fresh enough for the claim?
+Can the final answer be proven before release?
+```
+
+AMCA is the control layer for those questions. The model can reason, the
+framework can orchestrate, and tools can return data, but none of them become
+AMCA authority by themselves.
+
+## Run It In Two Minutes
+
+Install dependencies:
+
+```bash
+pnpm install --frozen-lockfile
+```
+
+Run the no-network proof/release demo:
+
+```bash
+pnpm demo:proof-release
+```
+
+Expected terminal shape:
+
+```text
+AMCA proof-release demo completed.
+timestamp: ...
+sourceCommitAtRunStart: ...
+outputDir: .amca/demo-runs/proof-release/...
+supportedRun.release: released
+blockedRun.release: blocked
+supportedRun.events: RunStarted -> ProposalReceived -> EffectRequested -> EffectReceiptRecorded -> ProposalReceived -> ProofGenerated -> ReleaseDecided -> FinalReleased
+blockedRun.events: RunStarted -> ProposalReceived -> ProofGenerated -> MismatchDetected -> ReleaseDecided
+```
+
+The command writes timestamped artifacts under `.amca/demo-runs/proof-release/`,
+including:
+
+```text
+events.json
+admitted-evidence-ref.json
+proof.json
+release-decision.json
+final-released-event.json
+blocked-proof.json
+blocked-release-decision.json
+verification-record.json
+timeline.md
+```
+
+That is the shortest way to see AMCA’s core promise: the same claim is released
+when backed by admitted evidence and blocked when it has no evidence.
+
+## Core Architecture
+
+```mermaid
+flowchart LR
+  User["User / App"] --> Provider["Provider or Agent Runtime"]
+  Provider --> Proposal["Proposal Candidate"]
+  Proposal --> Contracts["Strict Contract Validation"]
+  Contracts --> Harness["Governed Harness"]
+  Harness --> Broker["Effect Broker"]
+  Broker --> Adapter["Tool / Adapter / Local Compute"]
+  Adapter --> Candidate["Receipt or Observation Candidate"]
+  Candidate --> Kernel["Kernel Admission"]
+  Kernel --> Evidence["Admitted EvidenceRef"]
+  Evidence --> Final["FinalCandidate Claims"]
+  Final --> Proof["Deterministic Proof"]
+  Proof --> Gate["Release Gate"]
+  Gate --> Output["Released Output or Blocked Result"]
+
+  Provider -. "not proof authority" .-> Proof
+  Adapter -. "candidate only" .-> Proof
+  Candidate -. "not proof before admission" .-> Proof
+```
+
+The invariant:
+
+```text
+Agents reason.
+The harness validates.
+The broker controls effects.
+The kernel admits accepted events.
+The ledger anchors history.
+The proof engine verifies.
+The release gate publishes.
+```
+
+## Code Shape
+
+The executable demo in
+[`packages/testing/src/demo/proof-release.ts`](packages/testing/src/demo/proof-release.ts)
+uses this shape:
+
+```ts
+const dispatch = await harness.dispatchToolCommand(toolCommand);
+const evidenceRef = dispatch.recordedReceipt.evidence[0];
+
+const finalCandidate = {
+  kind: "final_candidate",
+  runId,
+  candidateId: "candidate_supported",
+  claims: [
+    {
+      claimId: "claim_tests_passed",
+      type: "test_result",
+      statement: "Tests passed.",
+      predicate: {
+        kind: "test_result",
+        capabilityId: "amca.demo.run_tests",
+        expectedStatus: "passed",
+        requiredReceiptType: "test_run",
+        testSuiteId: "public-proof-release-demo",
+      },
+      evidenceRefs: [evidenceRef],
+      criticality: "medium",
+    },
+  ],
+};
+
+const result = harness.submitFinalCandidate(finalCandidate);
+```
+
+AMCA does not prove from `statement`. It proves from `predicate` plus admitted
+`evidenceRefs`.
+
+## What AMCA Controls
+
+| Boundary         | AMCA rule                                                                              |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| Provider output  | Proposal-only. It cannot admit receipts, generate proof, release output, or mutate.    |
+| Tool output      | Candidate-only until AMCA records an accepted semantic event.                          |
+| Evidence         | Must be typed, hashed, source-event-bound, and tied to the run.                        |
+| Current state    | Requires fresh external observations, not stale historical receipts.                   |
+| Final claims     | Must be structured claims with predicates and evidence references.                     |
+| Release          | Published only after deterministic proof and a release decision.                       |
+| Framework state  | LangGraph, Temporal, provider traces, telemetry, audit, and replay are non-proof.      |
+| Domain extension | Domain logic must stay outside AMCA Core unless a generic design decision requires it. |
 
 ## What AMCA Is Not
 
@@ -65,41 +201,9 @@ AMCA can sit beside systems such as OpenAI Agents SDK, LangGraph, Temporal,
 Pydantic AI, or custom agent stacks as the admissibility and release-governance
 layer.
 
-## Repository Status
+## Optional Local Provider Flight Recorder
 
-This public repository is an alpha release of the AMCA Core framework.
-
-Some packages include optional adapters or live-integration tests. Those tests
-are gated behind explicit environment variables and do not imply production
-certification.
-
-## Quick Start
-
-```bash
-pnpm install --frozen-lockfile
-pnpm typecheck
-pnpm test
-pnpm test:mission
-```
-
-Run the local CLI:
-
-```bash
-pnpm amca --help
-```
-
-Run the no-network proof/release demo:
-
-```bash
-pnpm demo:proof-release
-```
-
-It writes timestamped local artifacts under `.amca/demo-runs/proof-release/`,
-including the event log, admitted evidence, proof, release decision, final
-release event, and blocked unsupported-claim path.
-
-Run the local provider flight recorder if you have an OpenAI-compatible local
-provider available:
+If you have an OpenAI-compatible local provider available:
 
 ```bash
 AMCA_PROVIDER_LIVE=1 \
@@ -110,24 +214,27 @@ pnpm demo:flight-recorder
 ```
 
 The recorder writes local artifacts under `.amca/demo-runs/`, which is ignored
-by git.
+by git. It does not claim cloud-provider certification, production provider
+certification, GitHub certification, Temporal certification, or production
+deployment readiness.
 
 ## Packages
 
-- `@amca/protocol`: protocol types for proposals, effects, evidence, proof,
-  release, mutation, approval, and events.
-- `@amca/contracts`: strict parsers and contract validation.
-- `@amca/proof`: deterministic proof rules.
-- `@amca/kernel`: run kernel, release gate, and event handling.
-- `@amca/effect-broker`: governed effect lifecycle.
-- `@amca/harness`: local governed run harness.
-- `@amca/ledger`, `@amca/ledger-local`, `@amca/ledger-postgres`: semantic ledger
-  interfaces and adapters.
-- `@amca/adapters-*`: adapter boundary and conformance packages.
-- `@amca/provider-harness`: proposal-boundary provider integration.
-- `@amca/security`, `@amca/observability`, `@amca/service`: supporting security,
-  telemetry, and local service boundaries.
-- `@amca/testing`: mission and anti-mission tests.
+| Package                  | Purpose                                                                      |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| `@amca/protocol`         | Protocol types for proposals, effects, evidence, proof, release, and events. |
+| `@amca/contracts`        | Strict parsers and contract validation.                                      |
+| `@amca/proof`            | Deterministic proof rules.                                                   |
+| `@amca/kernel`           | Run kernel, release gate, and event handling.                                |
+| `@amca/effect-broker`    | Governed effect lifecycle.                                                   |
+| `@amca/harness`          | Local governed run harness.                                                  |
+| `@amca/ledger-*`         | Semantic ledger interfaces and adapters.                                     |
+| `@amca/adapters-*`       | Adapter boundary and conformance packages.                                   |
+| `@amca/provider-harness` | Proposal-boundary provider integration.                                      |
+| `@amca/security`         | Permission, redaction, and tenant boundaries.                                |
+| `@amca/observability`    | Operations telemetry that remains non-proof.                                 |
+| `@amca/service`          | Local service boundary.                                                      |
+| `@amca/testing`          | Mission and anti-mission tests.                                              |
 
 ## Documentation
 
@@ -143,6 +250,14 @@ by git.
 - [Threat Model](docs/threat-model.md)
 - [Anti-Mission Tests](docs/anti-mission-tests.md)
 - [Package Boundaries](docs/package-boundaries.md)
+
+## Repository Status
+
+This public repository is an alpha release of the AMCA Core framework.
+
+Some packages include optional adapters or live-integration tests. Those tests
+are gated behind explicit environment variables and do not imply production
+certification.
 
 ## License
 
