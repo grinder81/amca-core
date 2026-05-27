@@ -10,10 +10,10 @@
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue" /></a>
-  <img alt="Status: alpha" src="https://img.shields.io/badge/status-alpha-orange" />
-  <img alt="Node >= 22.17" src="https://img.shields.io/badge/node-%3E%3D22.17-0f766e" />
-  <img alt="Package manager: pnpm" src="https://img.shields.io/badge/package%20manager-pnpm-f59e0b" />
+  <a href="LICENSE"><img alt="License Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue.svg"></a>
+  <img alt="Status alpha" src="https://img.shields.io/badge/status-alpha-orange.svg">
+  <img alt="Node.js 22.17 plus" src="https://img.shields.io/badge/node.js-22.17%2B-0f766e.svg">
+  <img alt="pnpm 9.15 plus" src="https://img.shields.io/badge/pnpm-9.15%2B-f59e0b.svg">
 </p>
 
 <p align="center">
