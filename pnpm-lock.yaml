@@ -69,8 +69,8 @@ importers:
         specifier: workspace:*
         version: link:../protocol
       '@temporalio/common':
-        specifier: ^1.16.2
-        version: 1.16.2
+        specifier: ^1.17.2
+        version: 1.17.2
 
   packages/adapters-tools:
     dependencies:
@@ -817,12 +817,12 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@temporalio/common@1.16.2':
-    resolution: {integrity: sha512-Yu62OW85wU3/XDt/xXDxw1lB3bce0xCrrgfd7aJJ5lp7FGzPgIgcC7bu2iIcSZnnCJGF86pnLJb+emo0mwINVg==}
+  '@temporalio/common@1.17.2':
+    resolution: {integrity: sha512-E+eR17bc/vR7HrmJBLCUq/asQplOUbl2Tm+JQgeK/fbSEAH2KJNL3sAVxx4/32KnOciKOYuV450brEicSNtnwQ==}
     engines: {node: '>= 20.0.0'}
 
-  '@temporalio/proto@1.16.2':
-    resolution: {integrity: sha512-KIBlGV38W3HiHsDFSEs33TsXl7I2KcApbuLlBcCKtjHVdl5pzEt1nQpD5szi+y6saIENaXBifmVTELtYh2w7Rw==}
+  '@temporalio/proto@1.17.2':
+    resolution: {integrity: sha512-ecsk9F8863/FBwipQjJtuO/kEzWpIU9poAx+/twnJOesZW5dOabw7hYuqfUQul2H5MWm25qUvgU+SgLEgwr3zw==}
     engines: {node: '>= 20.0.0'}
 
   '@tybys/wasm-util@0.10.2':
@@ -1398,6 +1398,10 @@ packages:
     resolution: {integrity: sha512-SAzp/O4Yh02jGdRc+uIrGoe87dkN/XtwxfZ4ZyafJHymd79ozp5VG5nyZ7ygqPM5+cpLDjjGnYFUkngonyDPOQ==}
     engines: {node: '>=14.0.0'}
 
+  protobufjs@7.5.5:
+    resolution: {integrity: sha512-3wY1AxV+VBNW8Yypfd1yQY9pXnqTAN+KwQxL8iYm3/BjKYMNg4i0owhEe26PWDOMaIrzeeF98Lqd5NGz4omiIg==}
+    engines: {node: '>=12.0.0'}
+
   protobufjs@7.6.1:
     resolution: {integrity: sha512-4K0myLaWL5EteuSAro91EGFgcfVgxb64Jx+7oDAY6GOkXD4M69yuSEljNcInGVCA5sOPxmZ/EqDLj2x0Q0+Ygg==}
     engines: {node: '>=12.0.0'}
@@ -1891,18 +1895,18 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@temporalio/common@1.16.2':
+  '@temporalio/common@1.17.2':
     dependencies:
-      '@temporalio/proto': 1.16.2
+      '@temporalio/proto': 1.17.2
       long: 5.3.2
       ms: 3.0.0-canary.1
       nexus-rpc: 0.0.2
       proto3-json-serializer: 2.0.2
 
-  '@temporalio/proto@1.16.2':
+  '@temporalio/proto@1.17.2':
     dependencies:
       long: 5.3.2
-      protobufjs: 7.6.1
+      protobufjs: 7.5.5
 
   '@tybys/wasm-util@0.10.2':
     dependencies:
@@ -2468,6 +2472,21 @@ snapshots:
   proto3-json-serializer@2.0.2:
     dependencies:
       protobufjs: 7.6.1
+
+  protobufjs@7.5.5:
+    dependencies:
+      '@protobufjs/aspromise': 1.1.2
+      '@protobufjs/base64': 1.1.2
+      '@protobufjs/codegen': 2.0.5
+      '@protobufjs/eventemitter': 1.1.1
+      '@protobufjs/fetch': 1.1.1
+      '@protobufjs/float': 1.0.2
+      '@protobufjs/inquire': 1.1.2
+      '@protobufjs/path': 1.1.2
+      '@protobufjs/pool': 1.1.0
+      '@protobufjs/utf8': 1.1.1
+      '@types/node': 25.9.1
+      long: 5.3.2
 
   protobufjs@7.6.1:
     dependencies:

@@ -15,6 +15,6 @@
     "@amca/adapters-conformance": "workspace:*",
     "@amca/contracts": "workspace:*",
     "@amca/protocol": "workspace:*",
-    "@temporalio/common": "^1.16.2"
+    "@temporalio/common": "^1.17.2"
   }
 }
